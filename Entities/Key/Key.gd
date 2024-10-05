@@ -1,5 +1,5 @@
 extends Node
-class_name key
+class_name DoorKey
 
 signal key_collected
 

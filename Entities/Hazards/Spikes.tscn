@@ -10,6 +10,13 @@ region = Rect2(48, 144, 16, 16)
 [node name="Spikes" type="Node2D"]
 
 [node name="Hazard" parent="." instance=ExtResource("1_pgpra")]
+position = Vector2(10, 10)
+
+[node name="CollisionShape2D" parent="Hazard" index="0"]
+position = Vector2(-2, -2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
 texture = SubResource("AtlasTexture_xc4ln")
+
+[editable path="Hazard"]

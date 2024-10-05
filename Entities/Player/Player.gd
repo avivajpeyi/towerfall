@@ -9,7 +9,6 @@ class_name Player
 @onready var right_raycast := $RightRayCast2D  # Reference to the right RayCast2D
 
 
-
 enum WallSide { NONE=0, LEFT=-1, RIGHT=1 }
 var wall_side: WallSide = WallSide.NONE
 var face_direction:int = -1

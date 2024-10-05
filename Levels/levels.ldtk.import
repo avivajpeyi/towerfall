@@ -7,10 +7,10 @@ path="res://.godot/imported/levels.ldtk-b2d959a5a409901f6c5351d7fd24ac00.scn"
 
 [deps]
 
-files=["res://Levels/tilesets/tileset_16px.res", "res://Levels/levels/Level_0.scn", "res://Levels/levels/Level_1.scn", "res://Levels/levels/Level_2.scn", "res://.godot/imported/levels.ldtk-b2d959a5a409901f6c5351d7fd24ac00.scn"]
+files=["res://Levels/tilesets/tileset_16px.res", "res://Levels/levels/Level_0.scn", "res://Levels/levels/Level_1.scn", "res://Levels/levels/Level_2.scn", "res://Levels/levels/Level_3.scn", "res://.godot/imported/levels.ldtk-b2d959a5a409901f6c5351d7fd24ac00.scn"]
 
 source_file="res://Levels/levels.ldtk"
-dest_files=["res://.godot/imported/levels.ldtk-b2d959a5a409901f6c5351d7fd24ac00.scn", "res://Levels/tilesets/tileset_16px.res", "res://Levels/levels/Level_0.scn", "res://Levels/levels/Level_1.scn", "res://Levels/levels/Level_2.scn", "res://.godot/imported/levels.ldtk-b2d959a5a409901f6c5351d7fd24ac00.scn"]
+dest_files=["res://.godot/imported/levels.ldtk-b2d959a5a409901f6c5351d7fd24ac00.scn", "res://Levels/tilesets/tileset_16px.res", "res://Levels/levels/Level_0.scn", "res://Levels/levels/Level_1.scn", "res://Levels/levels/Level_2.scn", "res://Levels/levels/Level_3.scn", "res://.godot/imported/levels.ldtk-b2d959a5a409901f6c5351d7fd24ac00.scn"]
 
 [params]
 
@@ -33,5 +33,5 @@ entities_post_import="res://Levels/import_scripts/entity_import.gd"
 level_post_import="res://Levels/import_scripts/level_import.gd"
 world_post_import=""
 Debug=""
-force_tileset_reimport=true
+force_tileset_reimport=false
 verbose_output=true
