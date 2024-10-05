@@ -115,9 +115,10 @@ func reload_scene(setted_options: Dictionary = {}) -> void:
 	await change_scene(null, setted_options)
 
 func _reload_scene() -> void:
-	_tree.reload_current_scene()
-	await _tree.create_timer(0.0).timeout
-	_current_scene = _tree.current_scene
+	if _current_scene != null:
+		_tree.reload_current_scene()
+		await _tree.create_timer(0.0).timeout
+		_current_scene = _tree.current_scene
 
 func fade_in_place(setted_options: Dictionary = {}) -> void:
 	setted_options["no_scene_change"] = true

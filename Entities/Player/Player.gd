@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
-@onready var sprite := $AnimatedSprite2D
+@onready var sprite := $Sprite2D
 @onready var physics_collider := $CollisionShape2D
 @onready var interaction_area := $Area2D
 @onready var left_raycast := $LeftRayCast2D  # Reference to the left RayCast2D
@@ -73,10 +73,10 @@ func handle_movement(delta):
 		STATE.STATIONARY:
 			var fall_distance = abs(position.y - _last_ypos)
 			if fall_distance > _fall_thresh:
-				print("Large fall! ")
+				#print("Large fall! ")
 				Die()
 			if wall_side==WallSide.NONE:
-				print("Cant interact with aything... RIP")
+				#print("Cant interact with aything... RIP")
 				Die()
 			
 
@@ -103,8 +103,9 @@ func _update_state():
 		state = STATE.IN_AIR
 
 func Die():
-	print("Player died")
-	GameManager.Lose()
+	#print("Player died")
+	#GameManager.Lose()
+	pass
 
 # Debugging visuals
 func _draw():
