@@ -14,6 +14,7 @@ distance = -1.0
 script = ExtResource("1_0gjrq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6, 6)
 texture = SubResource("AtlasTexture_71rbr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

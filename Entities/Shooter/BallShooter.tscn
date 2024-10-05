@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dw084biike2dj"]
+
+[node name="BallShooter" type="Node2D"]

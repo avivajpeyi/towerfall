@@ -4,7 +4,7 @@ const Player = preload("res://Entities/Player/Player.tscn")
 const Goal = preload("res://Entities/Goal/Goal.tscn")
 const DoorKey = preload("res://Entities/Key/Key.tscn")
 const Door = preload("res://Entities/Door/Door.tscn")
-const Spikes = preload("res://Entities/Hazards/Spikes.tscn")
+const Spikes = preload("res://Entities/Hazards/FloorSpikes.tscn")
 const BreakableBlock = preload("res://Entities/BreakableBlock/breakable_block.tscn")
 
 
@@ -39,9 +39,6 @@ func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 			_add_scn_at_entity(Spikes, entity, entity_layer)
 		elif entity.identifier == "BreakableBlock":
 			_add_scn_at_entity(BreakableBlock, entity, entity_layer)
-			
-		
-		
 		else:
 			print("Entity " + entity.identifier + " not processed")
 			
