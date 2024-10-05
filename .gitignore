@@ -1,0 +1,79 @@
+.godot/
+.import/
+[Ee]xport/
+
+
+# Godot `.import` directory (generated import files)
+.import/
+
+# Exported builds
+/export/
+*.exe
+*.app
+*.apk
+*.pck
+*.zip
+*.x86_64
+*.wasm
+*.html
+
+# Mono/.NET specific files (for Godot Mono projects)
+.mono/
+data_*/ # Mono runtime data cache
+*.csproj
+*.sln
+*.mono_osx_release.*
+*.mono_osx_debug.*
+
+# GDScript bytecode files (generated from Godot 4.3)
+*.gdc
+*.gdns
+*.gdnlib
+
+# Miscellaneous Godot files
+*.godot
+*.db
+
+# Editor settings (should be kept local)
+.editor_settings-*
+
+# VSCode specific (if you use VSCode for development)
+.vscode/
+
+# macOS-specific ignores
+
+# macOS generated files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS resource fork files
+._*
+
+# macOS system files
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# macOS filesystem metadata
+.metadata_never_index
+.fseventsd
+
+# Godot backups
+*.tmp
+*.log
+
+# Godot export templates (optional, if not shared across developers)
+templates/
+
+# Python environment for scripting (optional, if you're using Python scripts)
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist/
+build/
+env/
+venv/

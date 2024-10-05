@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqsssvgdcibit"]
+
+[ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_gqq4s"]
+[ext_resource type="SpriteFrames" uid="uid://b21gpwowgmxur" path="res://Entities/Player/Player.tres" id="2_yr4sq"]
+[ext_resource type="AudioStream" uid="uid://demm2lx0twrlj" path="res://Audio/Jump.ogg" id="3_pn35j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4tja"]
+custom_solver_bias = 0.095
+size = Vector2(9, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7dpr"]
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
+slide_on_ceiling = false
+platform_floor_layers = 4294442753
+platform_wall_layers = 2
+safe_margin = 2.178
+script = ExtResource("1_gqq4s")
+
+[node name="LeftRayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-0.5, -1.5)
+target_position = Vector2(-10, 0)
+collision_mask = 2
+hit_from_inside = true
+
+[node name="RightRayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-0.5, -1.5)
+target_position = Vector2(10, 0)
+collision_mask = 2
+hit_from_inside = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_yr4sq")
+animation = &"Falling"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_l4tja")
+one_way_collision_margin = 10.0
+debug_color = Color(0.800399, 0.0260445, 1, 0.42)
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pn35j")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_k7dpr")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

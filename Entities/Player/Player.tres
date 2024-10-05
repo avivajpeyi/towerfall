@@ -1,0 +1,82 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://b21gpwowgmxur"]
+
+[ext_resource type="Texture2D" uid="uid://cn5awui7bqekp" path="res://Image/Goober.png" id="1_dga8f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vgpe"]
+atlas = ExtResource("1_dga8f")
+region = Rect2(1, 25, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilgum"]
+atlas = ExtResource("1_dga8f")
+region = Rect2(1, 1, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w5so"]
+atlas = ExtResource("1_dga8f")
+region = Rect2(9, 1, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhp1a"]
+atlas = ExtResource("1_dga8f")
+region = Rect2(17, 1, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mo2tr"]
+atlas = ExtResource("1_dga8f")
+region = Rect2(1, 17, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l33dt"]
+atlas = ExtResource("1_dga8f")
+region = Rect2(1, 9, 7, 7)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vgpe")
+}],
+"loop": true,
+"name": &"Falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilgum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w5so")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhp1a")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mo2tr")
+}],
+"loop": true,
+"name": &"Jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilgum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w5so")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhp1a")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l33dt")
+}],
+"loop": true,
+"name": &"Wall Sliding",
+"speed": 5.0
+}]

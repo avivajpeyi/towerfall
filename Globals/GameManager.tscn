@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://kegydx50xy3v"]
+
+[ext_resource type="Script" path="res://Globals/GameManager.gd" id="1_2dxob"]
+[ext_resource type="Script" path="res://Globals/LevelManager.gd" id="2_iwbi8"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_rqt8l"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_o7pm5"]
+[ext_resource type="Resource" uid="uid://euybd2w0bax" path="res://addons/phantom_camera/examples/resources/tween/player_phantom_camera_2d_tween.tres" id="4_e622m"]
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_2dxob")
+
+[node name="LevelManager" type="Node2D" parent="."]
+script = ExtResource("2_iwbi8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 2
+position = Vector2(74.274, 21.2469)
+zoom = Vector2(4, 4)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("2_rqt8l")
+
+[node name="PlayerPhantomCamera2D" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(74.274, 21.2469)
+script = ExtResource("3_o7pm5")
+priority = 10
+follow_mode = 5
+zoom = Vector2(4, 4)
+tween_resource = ExtResource("4_e622m")
+tween_on_load = false
+draw_limits = true

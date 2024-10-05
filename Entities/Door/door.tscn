@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://wrot8ea8bqob"]
+
+[ext_resource type="Script" path="res://Entities/Door/door.gd" id="1_5bf1d"]
+[ext_resource type="Texture2D" uid="uid://cdo8umy7o5f2v" path="res://Image/monochrome_tilemap_packed.png" id="2_2pblr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pph1e"]
+atlas = ExtResource("2_2pblr")
+region = Rect2(160, 64, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_raf60"]
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_5bf1d")
+
+[node name="LockedSprite2D2" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_pph1e")
+
+[node name="OpenSprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_pph1e")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_raf60")

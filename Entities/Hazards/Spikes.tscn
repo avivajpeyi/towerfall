@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dawdxstal16l7"]
+
+[ext_resource type="PackedScene" uid="uid://dbb1sskdpse03" path="res://Entities/Hazards/Hazard.tscn" id="1_pgpra"]
+[ext_resource type="Texture2D" uid="uid://cdo8umy7o5f2v" path="res://Image/monochrome_tilemap_packed.png" id="2_tyb7q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xc4ln"]
+atlas = ExtResource("2_tyb7q")
+region = Rect2(48, 144, 16, 16)
+
+[node name="Spikes" type="Node2D"]
+
+[node name="Hazard" parent="." instance=ExtResource("1_pgpra")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_xc4ln")
