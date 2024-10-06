@@ -6,6 +6,10 @@
 # Godot `.import` directory (generated import files)
 .import/
 
+
+Levels/tilesets/tileset_16px.res
+
+
 # Exported builds
 /export/
 *.exe

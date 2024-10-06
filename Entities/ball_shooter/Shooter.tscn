@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cued7o4a2im5c"]
+
+[ext_resource type="Script" path="res://Entities/ball_shooter/shooter.gd" id="1_tki3i"]
+[ext_resource type="PackedScene" uid="uid://bkeo5itpvxlth" path="res://Entities/ball_shooter/ball_projectile.tscn" id="2_ibxg1"]
+[ext_resource type="Texture2D" uid="uid://b80sn8ttlmm2f" path="res://Image/monochrome_tilemap_transparent_packed.png" id="3_bsoqt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_532kg"]
+atlas = ExtResource("3_bsoqt")
+region = Rect2(160, 272, 16, 16)
+
+[node name="Shooter" type="Node2D"]
+script = ExtResource("1_tki3i")
+shoot_interval = 0.3
+projectile_speed = 500.0
+projectile_scene = ExtResource("2_ibxg1")
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = SubResource("AtlasTexture_532kg")
+
+[node name="ShootPosition" type="Marker2D" parent="."]
+position = Vector2(9, 6)
