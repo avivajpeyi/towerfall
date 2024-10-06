@@ -25,19 +25,19 @@ safe_margin = 2.178
 script = ExtResource("1_gqq4s")
 
 [node name="LeftRayCast2D" type="RayCast2D" parent="."]
-position = Vector2(4, 3)
-target_position = Vector2(-8, 0)
+position = Vector2(5.25, 4)
+target_position = Vector2(-10, 0)
 hit_from_inside = true
 collide_with_areas = true
 
 [node name="RightRayCast2D" type="RayCast2D" parent="."]
-position = Vector2(4, 3)
-target_position = Vector2(8, 0)
+position = Vector2(5.25, 4)
+target_position = Vector2(10, 0)
 hit_from_inside = true
 collide_with_areas = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4, 3)
+position = Vector2(5.25, 4)
 shape = SubResource("RectangleShape2D_l4tja")
 one_way_collision_margin = 10.0
 debug_color = Color(0.800399, 0.0260445, 1, 0.42)
@@ -49,11 +49,11 @@ stream = ExtResource("3_pn35j")
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(4, 3)
+position = Vector2(5.25, 4)
 shape = SubResource("RectangleShape2D_k7dpr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(4, 3)
+position = Vector2(5, 4)
 scale = Vector2(0.5625, 0.5625)
 texture = SubResource("AtlasTexture_ng0jd")
 

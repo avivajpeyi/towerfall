@@ -12,8 +12,10 @@ class_name Player
 enum WallSide { NONE=0, LEFT=-1, RIGHT=1 }
 var wall_side: WallSide = WallSide.NONE
 var face_direction:int = -1
+var _just_landed_on_wall = false
 
 # Movement variables
+var _in_spring_jump:bool = false
 var grav_scale: float = 2.0
 var terminal_velocity: float = 500.0
 @export var wall_sliding_speed: float = 100.0
@@ -29,6 +31,8 @@ var _leap_vec: Vector2 = Vector2(
 )
 const _jump_vec: Vector2 = Vector2(0, -75)
 
+var wall_landing_timer:Timer
+
 # Fall variables
 var _last_ypos: float = 0.0
 var _fall_thresh: float = 10.0
@@ -40,6 +44,13 @@ var state: STATE = STATE.IN_AIR
 func _ready():
 	_last_ypos = position.y
 	GameManager.set_camera_target(self)
+	
+	
+	wall_landing_timer = Timer.new()
+	wall_landing_timer.wait_time = 0.05  # Set the time duration (adjust as needed)
+	wall_landing_timer.one_shot = true
+	add_child(wall_landing_timer)
+	wall_landing_timer.timeout.connect(_on_wall_landing_timer_timeout)
 
 func is_stationary() -> bool:
 	return abs(velocity.x) < _fric_thresh
@@ -54,7 +65,9 @@ func _physics_process(delta):
 	apply_gravity()
 	handle_movement()
 	move_and_slide()
-	
+
+func _slide_up():
+	pass
 
 # Apply gravity and velocity constraints
 func apply_gravity():
@@ -68,7 +81,10 @@ func handle_movement():
 			if !is_stationary():
 				velocity.x -= sign(velocity.x) * _fric_thresh
 		STATE.WALL_SLIDING:
-			velocity.y = lerp(velocity.y, wall_sliding_speed, 0.1)
+			if _just_landed_on_wall:
+				velocity.y = -0.25*wall_sliding_speed
+			else:
+				velocity.y = lerp(velocity.y, wall_sliding_speed, 0.1)
 			_last_ypos = position.y  # Update y-position for fall calculation
 		STATE.STATIONARY:
 			var fall_distance = abs(position.y - _last_ypos)
@@ -93,6 +109,9 @@ func _jump():
 
 func _update_state():
 	if _is_on_wall():
+		if state!=STATE.WALL_SLIDING:
+			_just_landed_on_wall = false 
+			#wall_landing_timer.start()
 		state = STATE.WALL_SLIDING
 	elif is_on_floor():
 		if !is_stationary():
@@ -128,6 +147,26 @@ func _get_state_str() -> String:
 		_:
 			return "Unknown"
 
+
+
+func _spring_jump(force, start_point):
+	print("spring jump (raycasts disabled)!")
+	left_raycast.enabled = false
+	right_raycast.enabled = false	
+	_in_spring_jump= true
+	velocity.y = -force 
+	velocity.x = 0
+	position = start_point 
+	await get_tree().create_timer(0.75).timeout
+	_in_spring_jump=false
+	print("Raycasts enabled agai")
+	left_raycast.enabled = true
+	right_raycast.enabled = true
+	
+func _on_wall_landing_timer_timeout():
+	_just_landed_on_wall = false
+
+
 func _check_wall_side():
 	if left_raycast.is_colliding():
 		#print("Raycast L on", left_raycast.get_collider())
@@ -142,5 +181,8 @@ func _check_wall_side():
 	_leap_vec.x = abs(_leap_vec.x) * -1 * sign(face_direction)
 
 func _is_on_wall():
+	if _in_spring_jump:
+		return false
 	if is_on_wall() or wall_side != WallSide.NONE:
 		return true
+	return false
