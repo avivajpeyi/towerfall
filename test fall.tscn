@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm7bslgaxu7mw"]
+[gd_scene load_steps=3 format=3 uid="uid://c77lt0sggq8sa"]
 
-[ext_resource type="PackedScene" uid="uid://vu834t0ugngu" path="res://Levels/levels/Level_0.scn" id="1_0ax7c"]
+[ext_resource type="PackedScene" uid="uid://b12ebloi6ke5p" path="res://Levels/levels/Level_0.scn" id="1_0ax7c"]
 [ext_resource type="PackedScene" uid="uid://wmkx3ctahhd4" path="res://Entities/fall_spike/falling_spike.tscn" id="2_i3scc"]
 
 [node name="TestFall" type="Node2D"]

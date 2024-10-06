@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=4 uid="uid://dwm0ig8065u3y"]
+
+[ext_resource type="TileSet" uid="uid://5vngfj7p0gm8" path="res://Levels/tilesets/tileset_16px.res" id="1_i55lb"]
+[ext_resource type="PackedScene" uid="uid://cqsssvgdcibit" path="res://Entities/Player/Player.tscn" id="2_eo4iq"]
+[ext_resource type="PackedScene" uid="uid://bp5flj7cdkqnx" path="res://Entities/Spring/Spring.tscn" id="3_ctqcw"]
+[ext_resource type="PackedScene" uid="uid://c62r3aymf5o2s" path="res://Entities/BreakableBlock/breakable_block.tscn" id="4_do6o8"]
+
+[node name="TestBreakablesAndDoor" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAagARAA4AAAAAAAEAagARAA4AAAAAAAIAagARAA4AAAAAAAMAagARAA4AAAAAAAQAagARAA4AAAAAAAUAagARAA4AAAAAAAYAagARAA4AAAAAAAcAagARAA4AAAAAAAgAagARAA4AAAAAAAkAagARAA4AAAAAAAoAagARAA4AAAAAAAsAagARAA4AAAAAAAwAagARAA4AAAAAAA0AagARAA4AAAAAAA4AagARAA4AAAAAAA8AagARAA4AAAABABAAagAQAA0AAAACABAAagAQAA0AAAADABAAagAQAA0AAAAEABAAagAQAA0AAAAFABAAagAQAA0AAAAGABAAagAQAA0AAAAHABAAagAQAA0AAAAIABAAagAQAA0AAAAJABAAagAQAA0AAAAKABAAagAQAA0AAAALABAAagAQAA0AAAAMABAAagAQAA0AAAANABAAagAQAA0AAAAOABAAagAQAA0AAAAPABAAagAQAA0AAAAQABAAagAQAA0AAAARABAAagAQAA0AAAAAABAAagATAA0AAAADAAAAagAPAA4AAAADAAEAagAPAA4AAAADAAIAagAPAA4AAAADAAMAagAPAA4AAAADAAQAagAPAA4AAAADAAUAagAPAA4AAAADAAYAagAPAA4AAAA=")
+tile_set = ExtResource("1_i55lb")
+collision_visibility_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_eo4iq")]
+position = Vector2(14, 4)
+
+[node name="Spring" parent="." instance=ExtResource("3_ctqcw")]
+position = Vector2(15, 240)
+jump_force = 200.0
+
+[node name="BreakableBlock" parent="." instance=ExtResource("4_do6o8")]
+position = Vector2(77, 38)
+
+[node name="BreakableBlock2" parent="." instance=ExtResource("4_do6o8")]
+position = Vector2(77, 54)
+
+[node name="BreakableBlock3" parent="." instance=ExtResource("4_do6o8")]
+position = Vector2(77, 72)
+
+[node name="BreakableBlock4" parent="." instance=ExtResource("4_do6o8")]
+position = Vector2(77, 90)
+
+[node name="BreakableBlock5" parent="." instance=ExtResource("4_do6o8")]
+position = Vector2(77, 109)
+
+[node name="BreakableBlock6" parent="." instance=ExtResource("4_do6o8")]
+position = Vector2(77, 127)
+
+[node name="BreakableBlock7" parent="." instance=ExtResource("4_do6o8")]
+position = Vector2(77, 143)
+
+[node name="BreakableBlock8" parent="." instance=ExtResource("4_do6o8")]
+position = Vector2(77, 161)
+
+[node name="BreakableBlock9" parent="." instance=ExtResource("4_do6o8")]
+position = Vector2(77, 179)
+
+[node name="BreakableBlock10" parent="." instance=ExtResource("4_do6o8")]
+position = Vector2(77, 198)

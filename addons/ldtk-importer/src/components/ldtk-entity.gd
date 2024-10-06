@@ -20,6 +20,7 @@ extends Node2D
 var _refs := []
 var _points := []
 var _drawPaths := false
+var draw_entity := false
 
 func _ready() -> void:
 	_points.append(Vector2.ZERO)
@@ -42,7 +43,8 @@ func _ready() -> void:
 
 func _draw() -> void:
 	
-	print("")
+	if not draw_entity:
+		return
 	
 	if definition.is_empty():
 		return
@@ -62,10 +64,12 @@ func _draw() -> void:
 			draw_line(Vector2.ZERO, size, smart_color, 3.0)
 			draw_line(Vector2(0, size.y), Vector2(size.x, 0), smart_color, 3.0)
 		"Tile":
+			
 			if definition.tile == null:
 				pass
 			if definition.tile is Texture2D:
 				sprite.texture = definition.tile
+				
 
 	if _drawPaths:
 		for path in _refs:
