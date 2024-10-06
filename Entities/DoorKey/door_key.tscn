@@ -11,6 +11,7 @@ atlas = ExtResource("2_ue6df")
 region = Rect2(256, 64, 16, 16)
 
 [node name="DoorKey" type="Area2D" groups=["door_keys"]]
+collision_mask = 2
 script = ExtResource("1_k8p7b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

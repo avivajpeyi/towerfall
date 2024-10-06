@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://cqsssvgdcibit" path="res://Entities/Player/Player.tscn" id="2_eo4iq"]
 [ext_resource type="PackedScene" uid="uid://bp5flj7cdkqnx" path="res://Entities/Spring/Spring.tscn" id="3_ctqcw"]
 [ext_resource type="PackedScene" uid="uid://c62r3aymf5o2s" path="res://Entities/BreakableBlock/breakable_block.tscn" id="4_do6o8"]
-[ext_resource type="PackedScene" uid="uid://cued7o4a2im5c" path="res://Entities/ball_shooter/Shooter.tscn" id="5_5k3ya"]
-[ext_resource type="PackedScene" uid="uid://dkwsoa7dq8hr7" path="res://Entities/fall_spike/SpikeShooter.tscn" id="5_xhag0"]
+
+[ext_resource type="PackedScene" uid="uid://cala58v20sdm6" path="res://Entities/DoorKey/door_key.tscn" id="5_qy3vj"]
+[ext_resource type="PackedScene" uid="uid://wrot8ea8bqob" path="res://Entities/Door/door.tscn" id="6_ryp0o"]
 
 [node name="TestBreakablesAndDoor" type="Node2D"]
 
@@ -15,11 +16,10 @@ tile_set = ExtResource("1_i55lb")
 collision_visibility_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_eo4iq")]
-position = Vector2(14, 4)
+position = Vector2(14, 21)
 
 [node name="Spring" parent="." instance=ExtResource("3_ctqcw")]
-position = Vector2(15, 240)
-jump_force = 200.0
+position = Vector2(17, 239)
 
 [node name="BreakableBlock" parent="." instance=ExtResource("4_do6o8")]
 position = Vector2(77, 38)
@@ -51,9 +51,9 @@ position = Vector2(77, 179)
 [node name="BreakableBlock10" parent="." instance=ExtResource("4_do6o8")]
 position = Vector2(77, 198)
 
-[node name="SpikeShooter" parent="." instance=ExtResource("5_xhag0")]
-position = Vector2(47, 113)
 
-[node name="Shooter" parent="." instance=ExtResource("5_5k3ya")]
-position = Vector2(9, 216)
-shoot_interval = 0.7
+[node name="DoorKey" parent="." instance=ExtResource("5_qy3vj")]
+position = Vector2(17, 61)
+
+[node name="Door" parent="." instance=ExtResource("6_ryp0o")]
+position = Vector2(16, 83)
