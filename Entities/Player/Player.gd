@@ -16,7 +16,7 @@ var face_direction:int = -1
 # Movement variables
 var grav_scale: float = 2.0
 var terminal_velocity: float = 500.0
-@export var wall_sliding_speed: float = 50.0
+@export var wall_sliding_speed: float = 100.0
 var friction: float = 200.0
 var _fric_thresh: float = 0.001
 
