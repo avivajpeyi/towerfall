@@ -39,13 +39,9 @@ func GoToNextLevel():
 	
 func _load_level_paths()->PackedStringArray:
 	var level_files = FileUtils.find_files_of_type("res://Levels/levels/", "scn")
-	level_files = level_files.duplicate() as Array
-	level_files.sort_custom(_compare_level_names)
-	return PackedStringArray(level_files)
-
-func _compare_level_names(a: String, b: String) -> int:
-	var basename_a = a.get_basename().split("_")
-	var basename_b = b.get_basename().split("_")
-	var num_a = int(basename_a[-1]) 
-	var num_b = int(basename_b[-1])
-	return num_a > num_b
+	var sorted_files = []
+	for i in range(len(level_files)):
+		sorted_files.append("res://Levels/levels/level_%d.scn"%i)
+	level_files= PackedStringArray(sorted_files)
+	print(level_files)
+	return sorted_files

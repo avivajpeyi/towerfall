@@ -18,16 +18,12 @@ func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 	print("EntityLayer: ", entity_layer.name, " | Count: ", entities.size())
 
 	for entity in entities:
-		# Perform operations here
-		
-		print(entity.identifier)
-		print(entity)
 		if entity.identifier == "Player":
 			_add_scn_at_entity(Player, entity, entity_layer)
 			print("Just added player")
 		elif entity.identifier == "Goal":
 			_add_scn_at_entity(Goal, entity, entity_layer)
-		elif entity.identifier == "DoorKey":
+		elif entity.identifier == "Key":
 			_add_scn_at_entity(DoorKey, entity, entity_layer)
 		elif entity.identifier == "Door":
 			_add_scn_at_entity(Door, entity, entity_layer)
@@ -48,7 +44,6 @@ func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 
 
 func _add_scn_at_entity(scn, entity, entity_layer):
-	print("In add_scn")
 	var node = scn.instantiate()
 	node.position = entity.position
 	node.set_meta("entity_data", entity)

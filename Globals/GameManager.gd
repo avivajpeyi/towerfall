@@ -33,7 +33,6 @@ func Lose():
 	
 func GoToNextLevel():
 	_lvlManager.GoToNextLevel()
-	await get_tree().create_timer(0.1).timeout
 	if _lvlManager.entered_final_level():
 		print("Posting score")
 		SilentWolf.Scores.persist_score(global.player_name, _time)	
