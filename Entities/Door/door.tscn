@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b80sn8ttlmm2f" path="res://Image/monochrome_tilemap_transparent_packed.png" id="2_a2qat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_an871"]
+size = Vector2(16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkna8"]
 atlas = ExtResource("2_a2qat")
@@ -38,10 +39,10 @@ script = ExtResource("1_5bf1d")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(10, 10)
+position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_an871")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(10, 10)
+position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_4ivyy")
 animation = &"unlocked"
