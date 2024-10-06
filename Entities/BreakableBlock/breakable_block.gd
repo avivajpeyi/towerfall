@@ -1,7 +1,7 @@
 extends Node2D
 class_name BreakableBlock
 
-@export var break_time: float = 2.0
+var break_time: float = 0.8
 var is_broken: bool = false
 @onready var shaker := $Sprite2D/ShakerComponent2D as ShakerComponent2D
 

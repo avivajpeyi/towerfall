@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dawdxstal16l7"]
+[gd_scene load_steps=5 format=3 uid="uid://d0otf5ctpgk8"]
 
-[ext_resource type="Script" path="res://Entities/Hazards/Hazard.gd" id="1_q68hq"]
-[ext_resource type="Texture2D" uid="uid://b80sn8ttlmm2f" path="res://Image/monochrome_tilemap_transparent_packed.png" id="2_pelbl"]
+[ext_resource type="Script" path="res://Entities/Hazards/Hazard.gd" id="1_82qwj"]
+[ext_resource type="Texture2D" uid="uid://b80sn8ttlmm2f" path="res://Image/monochrome_tilemap_transparent_packed.png" id="2_1kxq6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nyjo2"]
 size = Vector2(16, 10.25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xc4ln"]
-atlas = ExtResource("2_pelbl")
+atlas = ExtResource("2_1kxq6")
 region = Rect2(48, 144, 16, 16)
 
 [node name="Spikes" type="Node2D"]
@@ -15,15 +15,17 @@ region = Rect2(48, 144, 16, 16)
 [node name="Hazard" type="Area2D" parent="."]
 position = Vector2(10, 10)
 collision_mask = 2
-script = ExtResource("1_q68hq")
+script = ExtResource("1_82qwj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
-position = Vector2(-2, 1.125)
+position = Vector2(-5, -2)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_nyjo2")
 debug_color = Color(0.954894, 6.73831e-07, 0.546055, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8, 8)
+rotation = 1.5708
 texture = SubResource("AtlasTexture_xc4ln")
 
 [connection signal="area_entered" from="Hazard" to="Hazard" method="_on_area_entered"]
