@@ -103,9 +103,7 @@ func _update_state():
 		state = STATE.IN_AIR
 
 func Die():
-	#print("Player died")
-	#GameManager.Lose()
-	pass
+	GameManager.Lose()
 
 # Debugging visuals
 func _draw():
