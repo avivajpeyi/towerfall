@@ -10,5 +10,5 @@ func _on_area_entered(area: Area2D) -> void:
 	var parent =  area.get_parent()
 	if parent is Player:
 		print(self, "Key is collected.")
-		emit_signal("key_collected")  # Emit the signal to notify key collection
+		key_collected.emit()
 		queue_free()  # Remove the key after it's collected

@@ -44,7 +44,7 @@ func _ready():
 func is_stationary() -> bool:
 	return abs(velocity.x) < _fric_thresh
 
-func _process(delta):
+func _process(_delta):
 	queue_redraw()
 
 func _physics_process(delta):
@@ -52,7 +52,7 @@ func _physics_process(delta):
 	_check_wall_side()
 	_update_state()
 	apply_gravity()
-	handle_movement(delta)
+	handle_movement()
 	move_and_slide()
 	
 
@@ -62,7 +62,7 @@ func apply_gravity():
 		velocity.y = min(velocity.y + grav_scale, terminal_velocity)
 
 # Handle player movement and states
-func handle_movement(delta):
+func handle_movement():
 	match state:
 		STATE.FLOOR_SLIDING:
 			if !is_stationary():
