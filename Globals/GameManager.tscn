@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://kegydx50xy3v"]
+[gd_scene load_steps=7 format=3 uid="uid://kegydx50xy3v"]
 
 [ext_resource type="Script" path="res://Globals/GameManager.gd" id="1_2dxob"]
 [ext_resource type="Script" path="res://Globals/LevelManager.gd" id="2_iwbi8"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_rqt8l"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_o7pm5"]
 [ext_resource type="Resource" uid="uid://euybd2w0bax" path="res://addons/phantom_camera/examples/resources/tween/player_phantom_camera_2d_tween.tres" id="4_e622m"]
+[ext_resource type="Script" path="res://Globals/GameUi.gd" id="6_bqwxu"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_2dxob")
@@ -30,3 +31,41 @@ zoom = Vector2(4, 4)
 tween_resource = ExtResource("4_e622m")
 tween_on_load = false
 draw_limits = true
+
+[node name="GameUi" type="CanvasLayer" parent="."]
+script = ExtResource("6_bqwxu")
+
+[node name="PlayerName" type="Label" parent="GameUi"]
+offset_right = 95.0
+offset_bottom = 23.0
+text = "PlayerName"
+
+[node name="LevelInstruction" type="Label" parent="GameUi"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Level Instructions"
+horizontal_alignment = 1
+
+[node name="LevelInfo" type="VBoxContainer" parent="GameUi"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -181.0
+offset_bottom = 50.0
+grow_horizontal = 0
+
+[node name="LevelNumber" type="Label" parent="GameUi/LevelInfo"]
+layout_mode = 2
+text = "Level Num / total levels
+"
+horizontal_alignment = 2
+
+[node name="Time" type="Label" parent="GameUi/LevelInfo"]
+layout_mode = 2
+text = "00:00:00"
+horizontal_alignment = 2

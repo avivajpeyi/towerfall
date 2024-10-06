@@ -16,6 +16,7 @@ config/icon="res://Image/picon.svg"
 
 [autoload]
 
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 global="*res://Globals/Global.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
@@ -29,7 +30,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/ldtk-importer/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg", "res://addons/utils/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/ldtk-importer/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg", "res://addons/silent_wolf/plugin.cfg", "res://addons/utils/plugin.cfg")
 
 [importer_defaults]
 

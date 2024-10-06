@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bidrcu5a67xl2"]
+
+[ext_resource type="Script" path="res://Entities/GameCompleted/game_completed.gd" id="1_wkftj"]
+
+[node name="GameCompleted" type="Node2D"]
+script = ExtResource("1_wkftj")
