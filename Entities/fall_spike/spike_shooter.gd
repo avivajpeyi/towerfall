@@ -20,6 +20,7 @@ func _physics_process(delta):
 			
 
 func shoot_spike():
+	AudioManager.spike_sfx.play()
 	var falling_spike = FallingSpike.instantiate()
 	falling_spike.global_position = global_position
 	

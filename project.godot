@@ -25,6 +25,10 @@ SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 Shaker="*res://addons/shaker/src/Shaker.gd"
 GameManager="*res://Globals/GameManager.tscn"
 
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+AudioManager="*res://Entities/AudioManager/AudioManager.tscn"
+
+
 [display]
 
 window/stretch/mode="viewport"

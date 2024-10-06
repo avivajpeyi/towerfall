@@ -23,6 +23,8 @@ func _on_shoot_timer_timeout():
 func shoot():
 	if projectile_scene:
 		var projectile = projectile_scene.instantiate()
+		AudioManager.shoot_sfx.play()
+		
 		if projectile is RigidBody2D:
 			projectile.global_position = shoot_position.global_position
 			projectile.linear_velocity = Vector2.RIGHT.rotated(global_rotation) * projectile_speed

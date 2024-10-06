@@ -11,7 +11,7 @@ region = Rect2(160, 272, 16, 16)
 [node name="Shooter" type="Node2D"]
 script = ExtResource("1_tki3i")
 shoot_interval = 0.3
-projectile_speed = 500.0
+projectile_speed = 600.0
 projectile_scene = ExtResource("2_ibxg1")
 
 [node name="ShootTimer" type="Timer" parent="."]

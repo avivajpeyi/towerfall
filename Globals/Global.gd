@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var OST = load("res://Audio/OST.mp3")
+var OST = load("res://Audio/fall.mp3")
 var audio
 var player_name:String
 
@@ -18,6 +18,7 @@ func _add_gamemusic_loop():
 	audio = AudioStreamPlayer.new()
 	add_child(audio)
 	audio.stream = OST
+	audio.volume_db = -18
 	audio.play()
 	audio.finished.connect(audio.play)
 	

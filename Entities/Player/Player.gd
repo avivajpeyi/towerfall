@@ -89,6 +89,7 @@ func handle_movement():
 		STATE.STATIONARY:
 			var fall_distance = abs(position.y - _last_ypos)
 			if fall_distance > _fall_thresh:
+				
 				#print("Large fall! ")
 				Die()
 			if wall_side==WallSide.NONE:
@@ -101,6 +102,7 @@ func handle_movement():
 
 # Jump functionality
 func _jump():
+	AudioManager.jump_sfx.play()
 	match state:
 		STATE.WALL_SLIDING, STATE.FLOOR_SLIDING:
 			velocity = _leap_vec
@@ -122,6 +124,7 @@ func _update_state():
 		state = STATE.IN_AIR
 
 func Die():
+	AudioManager.die_sfx.play()
 	GameManager.Lose()
 
 # Debugging visuals
@@ -185,4 +188,3 @@ func _is_on_wall():
 		return false
 	if is_on_wall() or wall_side != WallSide.NONE:
 		return true
-	return false

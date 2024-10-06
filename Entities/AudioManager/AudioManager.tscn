@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dergccyo6nrl6"]
+
+[ext_resource type="Script" path="res://Entities/AudioManager/AudioManager.gd" id="1_rlgng"]
+[ext_resource type="AudioStream" uid="uid://demm2lx0twrlj" path="res://Audio/Jump.ogg" id="2_ehvsl"]
+[ext_resource type="AudioStream" uid="uid://dqrt3xh3quuuf" path="res://Audio/Slide.wav" id="3_lpm85"]
+[ext_resource type="AudioStream" uid="uid://nyv3u7gspxbv" path="res://Audio/explosion.wav" id="4_aofjq"]
+[ext_resource type="AudioStream" uid="uid://bkv6evj3shg00" path="res://Audio/laserShoot.wav" id="5_u70rr"]
+[ext_resource type="AudioStream" uid="uid://dvp0tmxxlvdq2" path="res://Audio/spring.wav" id="6_k1lw5"]
+[ext_resource type="AudioStream" uid="uid://lgspx02j6wsa" path="res://Audio/spike.wav" id="7_3ydog"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_rlgng")
+
+[node name="jumpSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ehvsl")
+volume_db = -15.352
+pitch_scale = 1.76
+
+[node name="slideSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lpm85")
+volume_db = 6.437
+pitch_scale = 1.12
+
+[node name="dieSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_aofjq")
+volume_db = -15.849
+pitch_scale = 1.18
+
+[node name="shooterSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_u70rr")
+volume_db = -20.8
+pitch_scale = 1.53
+
+[node name="springSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_k1lw5")
+volume_db = -16.838
+
+[node name="spikeSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3ydog")
+volume_db = -16.838
+pitch_scale = 0.42
