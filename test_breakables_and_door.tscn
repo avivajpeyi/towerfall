@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=4 uid="uid://dwm0ig8065u3y"]
+[gd_scene load_steps=7 format=4 uid="uid://dwm0ig8065u3y"]
 
 [ext_resource type="TileSet" uid="uid://5vngfj7p0gm8" path="res://Levels/tilesets/tileset_16px.res" id="1_i55lb"]
 [ext_resource type="PackedScene" uid="uid://cqsssvgdcibit" path="res://Entities/Player/Player.tscn" id="2_eo4iq"]
 [ext_resource type="PackedScene" uid="uid://bp5flj7cdkqnx" path="res://Entities/Spring/Spring.tscn" id="3_ctqcw"]
 [ext_resource type="PackedScene" uid="uid://c62r3aymf5o2s" path="res://Entities/BreakableBlock/breakable_block.tscn" id="4_do6o8"]
+[ext_resource type="PackedScene" uid="uid://cued7o4a2im5c" path="res://Entities/ball_shooter/Shooter.tscn" id="5_5k3ya"]
+[ext_resource type="PackedScene" uid="uid://dkwsoa7dq8hr7" path="res://Entities/fall_spike/SpikeShooter.tscn" id="5_xhag0"]
 
 [node name="TestBreakablesAndDoor" type="Node2D"]
 
@@ -48,3 +50,10 @@ position = Vector2(77, 179)
 
 [node name="BreakableBlock10" parent="." instance=ExtResource("4_do6o8")]
 position = Vector2(77, 198)
+
+[node name="SpikeShooter" parent="." instance=ExtResource("5_xhag0")]
+position = Vector2(47, 113)
+
+[node name="Shooter" parent="." instance=ExtResource("5_5k3ya")]
+position = Vector2(9, 216)
+shoot_interval = 0.7

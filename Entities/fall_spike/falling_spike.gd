@@ -3,8 +3,6 @@ class_name FallingSpike
 
 
 
-
-
 func _on_body_entered(body:Node2D):
 	print("Collision detected with: ", body.name)
 	print("Falling spike collided at position: ", global_position)
