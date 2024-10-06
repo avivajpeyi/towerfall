@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://b80sn8ttlmm2f" path="res://Image/monochrome_tilemap_transparent_packed.png" id="2_gl3oo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0px5"]
+size = Vector2(16, 16)
 
 [node name="Spring" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_8wr1i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -15,7 +17,7 @@ region_enabled = true
 region_rect = Rect2(64, 128, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10, 10)
+position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_h0px5")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

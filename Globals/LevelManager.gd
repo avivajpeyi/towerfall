@@ -43,5 +43,4 @@ func _load_level_paths()->PackedStringArray:
 	for i in range(len(level_files)):
 		sorted_files.append("res://Levels/levels/level_%d.scn"%i)
 	level_files= PackedStringArray(sorted_files)
-	print(level_files)
 	return sorted_files

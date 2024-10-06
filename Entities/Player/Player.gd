@@ -130,9 +130,11 @@ func _get_state_str() -> String:
 
 func _check_wall_side():
 	if left_raycast.is_colliding():
+		#print("Raycast L on", left_raycast.get_collider())
 		wall_side = WallSide.LEFT
 		face_direction = -1
 	elif right_raycast.is_colliding():
+		#print("Raycast R on", right_raycast.get_collider())
 		wall_side = WallSide.RIGHT
 		face_direction = 1
 	else:
