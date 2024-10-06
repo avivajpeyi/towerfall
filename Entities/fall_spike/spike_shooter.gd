@@ -11,9 +11,9 @@ func _physics_process(delta):
 
 		var collider = raycast.get_collider()
 
-		print("SpikeShooter raycast hit! ", collider)
+		#print("SpikeShooter raycast hit! ", collider)
 		if collider is Player:
-			print("Player hit")
+			#print("Player hit")
 			shoot_spike()
 			disable_shooter()
 			# disable spike shooter now that it has shot one
@@ -22,10 +22,11 @@ func _physics_process(delta):
 func shoot_spike():
 	var falling_spike = FallingSpike.instantiate()
 	falling_spike.global_position = global_position
+	
 	get_parent().add_child(falling_spike)
-	print("Spike shot at position: ", global_position)
+	#print("Spike shot at position: ", global_position)
 
 func disable_shooter():
 	is_active = false
 	set_physics_process(false)
-	print("SpikeShooter disabled")
+	#print("SpikeShooter disabled")
