@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://wmkx3ctahhd4"]
+
+[ext_resource type="Script" path="res://Entities/fall_spike/falling_spike.gd" id="1_56hst"]
+[ext_resource type="Texture2D" uid="uid://b80sn8ttlmm2f" path="res://Image/monochrome_tilemap_transparent_packed.png" id="1_vygig"]
+[ext_resource type="PackedScene" uid="uid://dbb1sskdpse03" path="res://Entities/Hazards/Hazard.tscn" id="3_sfg7v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdonv"]
+atlas = ExtResource("1_vygig")
+region = Rect2(96, 128, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_il3ow"]
+size = Vector2(16, 16)
+
+[node name="FallSpike" type="RigidBody2D"]
+collision_mask = 7
+gravity_scale = 0.162
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_56hst")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = SubResource("AtlasTexture_xdonv")
+
+[node name="Hazard" parent="." instance=ExtResource("3_sfg7v")]
+position = Vector2(8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_il3ow")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Hazard" to="." method="_on_hazard_area_entered"]
+
+[editable path="Hazard"]
