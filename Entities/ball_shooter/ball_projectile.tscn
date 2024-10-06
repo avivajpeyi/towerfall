@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkeo5itpvxlth"]
+
+[ext_resource type="Script" path="res://Entities/ball_shooter/ball_projectile.gd" id="1_0n6ij"]
+[ext_resource type="Texture2D" uid="uid://b80sn8ttlmm2f" path="res://Image/monochrome_tilemap_transparent_packed.png" id="1_bd27q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_en31b"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0opf7"]
+atlas = ExtResource("1_bd27q")
+region = Rect2(32, 16, 16, 16)
+
+[node name="Ball" type="RigidBody2D"]
+script = ExtResource("1_0n6ij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14, 0)
+shape = SubResource("CircleShape2D_en31b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14, 0)
+scale = Vector2(1.6875, 1.625)
+texture = SubResource("AtlasTexture_0opf7")

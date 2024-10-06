@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cm7bslgaxu7mw"]
 
 [ext_resource type="PackedScene" uid="uid://vu834t0ugngu" path="res://Levels/levels/Level_0.scn" id="1_0ax7c"]
-[ext_resource type="PackedScene" uid="uid://wmkx3ctahhd4" path="res://Entities/fall_spike/falling_spike.tscn" id="2_i3scc"]
+[ext_resource type="PackedScene" uid="uid://cued7o4a2im5c" path="res://Entities/ball_shooter/Shooter.tscn" id="2_57eco"]
 
 [node name="TestFall" type="Node2D"]
 
 [node name="Level_0" parent="." instance=ExtResource("1_0ax7c")]
 
-[node name="FallSpike" parent="." instance=ExtResource("2_i3scc")]
-position = Vector2(72, 105)
+[node name="Shooter" parent="." instance=ExtResource("2_57eco")]
+position = Vector2(75, 142)
