@@ -1,27 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://wrot8ea8bqob"]
+[gd_scene load_steps=7 format=3 uid="uid://wrot8ea8bqob"]
 
 [ext_resource type="Script" path="res://Entities/Door/door.gd" id="1_5bf1d"]
-[ext_resource type="Texture2D" uid="uid://cdo8umy7o5f2v" path="res://Image/monochrome_tilemap_packed.png" id="2_2pblr"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pph1e"]
-atlas = ExtResource("2_2pblr")
-region = Rect2(160, 0, 16, 16)
+[ext_resource type="Texture2D" uid="uid://b80sn8ttlmm2f" path="res://Image/monochrome_tilemap_transparent_packed.png" id="2_a2qat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_an871"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkna8"]
+atlas = ExtResource("2_a2qat")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khvi8"]
+atlas = ExtResource("2_a2qat")
+region = Rect2(160, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ivyy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkna8")
+}],
+"loop": false,
+"name": &"locked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khvi8")
+}],
+"loop": false,
+"name": &"unlocked",
+"speed": 5.0
+}]
+
 [node name="Door" type="Node2D"]
 script = ExtResource("1_5bf1d")
-
-[node name="LockedSprite2D" type="Sprite2D" parent="."]
-position = Vector2(10, 10)
-texture = SubResource("AtlasTexture_pph1e")
-
-[node name="OpenSprite2D" type="Sprite2D" parent="."]
-position = Vector2(10, 10)
-texture = SubResource("AtlasTexture_pph1e")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(10, 10)
 shape = SubResource("RectangleShape2D_an871")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_4ivyy")
+animation = &"unlocked"

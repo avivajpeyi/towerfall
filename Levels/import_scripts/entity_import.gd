@@ -2,14 +2,10 @@
 
 const Player = preload("res://Entities/Player/Player.tscn")
 const Goal = preload("res://Entities/Goal/Goal.tscn")
-const DoorKey = preload("res://Entities/Key/Key.tscn")
-const Door = preload("res://Entities/Door/Door.tscn")
+const DoorKey = preload("res://Entities/DoorKey/door_key.tscn")
+const Door = preload("res://Entities/Door/door.tscn")
 const Spikes = preload("res://Entities/Hazards/FloorSpikes.tscn")
 const BreakableBlock = preload("res://Entities/BreakableBlock/breakable_block.tscn")
-
-
-
-
 
 
 const LDTKUtil = preload("res://addons/ldtk-importer/src/util/util.gd")
@@ -31,7 +27,7 @@ func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 			print("Just added player")
 		elif entity.identifier == "Goal":
 			_add_scn_at_entity(Goal, entity, entity_layer)
-		elif entity.identifier == "Key":
+		elif entity.identifier == "DoorKey":
 			_add_scn_at_entity(DoorKey, entity, entity_layer)
 		elif entity.identifier == "Door":
 			_add_scn_at_entity(Door, entity, entity_layer)
