@@ -8,6 +8,7 @@ var _num_keys_collected: int = 0  # Keep track of the collected keys
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var static_body: StaticBody2D = $StaticBody2D
+@onready var shaker: ShakerComponent2D = $AnimatedSprite2D/ShakerComponent2D
 var _is_locked: bool = true
 
 
@@ -20,8 +21,6 @@ func _ready():
 
 func _on_key_collected():
 	_num_keys_collected += 1
-	print("Collected a key! Total keys: ", _num_keys_collected, " out of ", _num_required_keys)
-
 	if _num_keys_collected >= _num_required_keys:
 		_lock_door(false) 
 
@@ -29,12 +28,11 @@ func _on_key_collected():
 func _lock_door(lock:bool):
 	_is_locked = lock
 	if lock:
-		print("Lock door!")
 		animated_sprite.play("locked")
 		static_body.set_collision_layer_value(1, true)  # Enable collision on layer 1
 		static_body.set_collision_mask_value(1, true)   # Enable collision mask on layer 1
 	else:
-		print("unlock door!")
 		animated_sprite.play("unlocked")
 		static_body.set_collision_layer_value(1, false)  # Disable collision on layer 1
 		static_body.set_collision_mask_value(1, false)   # Disable collision mask on layer 1
+		shaker.play_shake()
