@@ -7,7 +7,7 @@ class_name Player
 @onready var interaction_area := $Area2D
 @onready var left_raycast := $LeftRayCast2D  # Reference to the left RayCast2D
 @onready var right_raycast := $RightRayCast2D  # Reference to the right RayCast2D
-
+@onready var slidepfx = $slidepfx
 
 
 var dead:bool = false
@@ -19,7 +19,7 @@ var _just_landed_on_wall = false
 
 # Movement variables
 
-var debug = false
+var debug = true
 var _in_spring_jump:bool = false
 var grav_scale: float = 2.0
 var terminal_velocity: float = 500.0
@@ -49,6 +49,8 @@ var state: STATE = STATE.IN_AIR
 func _ready():
 	_last_ypos = position.y
 	GameManager.set_camera_target(self)
+
+
 	wall_landing_timer = Timer.new()
 	wall_landing_timer.wait_time = 0.05  # Set the time duration (adjust as needed)
 	wall_landing_timer.one_shot = true
@@ -62,16 +64,14 @@ func _process(_delta):
 	queue_redraw()
 
 func _physics_process(delta):
-	if !dead:
-		_fric_thresh = friction * delta
-		_check_wall_side()
-		_update_state()
-		apply_gravity()
-		handle_movement()
-		move_and_slide()
-	else:
-		velocity=Vector2.ZERO
-
+	_fric_thresh = friction * delta
+	_check_wall_side()
+	_update_state()
+	apply_gravity()
+	handle_movement()
+	move_and_slide()
+	
+	
 func _slide_up():
 	pass
 
@@ -87,7 +87,6 @@ func handle_movement():
 			if !is_stationary():
 				velocity.x -= sign(velocity.x) * _fric_thresh
 		STATE.WALL_SLIDING:
-			$CPUParticles2D.emitting = true
 			if _just_landed_on_wall:
 				velocity.y = -0.25*wall_sliding_speed
 			else:
@@ -96,19 +95,15 @@ func handle_movement():
 		STATE.STATIONARY:
 			var fall_distance = abs(position.y - _last_ypos)
 			if fall_distance > _fall_thresh:
+				print("Large fall! ")
 				Die()
 			elif wall_side==WallSide.NONE:
+				print("Cant interact with aything... RIP")
 				Die()
 
 
-	if Input.is_action_just_pressed("jump") and !dead:
+	if Input.is_action_just_pressed("jump"):
 		_jump()
-		
-
-func _input(event):
-	if event.is_action_pressed("debug_mode"):
-		debug = !debug
-	
 
 # Jump functionality
 func _jump():
@@ -119,8 +114,6 @@ func _jump():
 			jumped = true
 		STATE.STATIONARY:
 			velocity = _jump_vec
-			if global.end_game_mode:
-				velocity=_leap_vec
 			jumped = true
 
 	if jumped:
@@ -143,16 +136,10 @@ func _update_state():
 		state = STATE.IN_AIR
 
 func Die():
-	if !dead and !global.end_game_mode:
+	if !dead:
 		AudioManager.play_die_sfx()
 		GameManager.Lose()
 		dead = true
-		velocity = Vector2.ZERO  # Stop movement by setting velocity to zero
-		set_physics_process(false)  # Disable physics processing
-		set_process(false)  # Optionally disable input or other processing
-		sprite.modulate = Color(1, 1, 1, 0.5)  # Optionally fade out the player sprite
-		# Play death animation, sound, or any other effects
-		print("Player has died")
 
 # Debugging visuals
 func _draw():
@@ -174,6 +161,8 @@ func _get_state_str() -> String:
 		STATE.IN_AIR:
 			return "Airborne"
 		STATE.WALL_SLIDING:
+			slidepfx.emitting = true
+			
 			return "Wall-Sliding"
 		_:
 			return "Unknown"

@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cqsssvgdcibit" path="res://Entities/Player/Player.tscn" id="2_eo4iq"]
 [ext_resource type="PackedScene" uid="uid://bp5flj7cdkqnx" path="res://Entities/Spring/Spring.tscn" id="3_ctqcw"]
 [ext_resource type="PackedScene" uid="uid://c62r3aymf5o2s" path="res://Entities/BreakableBlock/breakable_block.tscn" id="4_do6o8"]
-
 [ext_resource type="PackedScene" uid="uid://cala58v20sdm6" path="res://Entities/DoorKey/door_key.tscn" id="5_qy3vj"]
 [ext_resource type="PackedScene" uid="uid://wrot8ea8bqob" path="res://Entities/Door/door.tscn" id="6_ryp0o"]
 
@@ -50,7 +49,6 @@ position = Vector2(77, 179)
 
 [node name="BreakableBlock10" parent="." instance=ExtResource("4_do6o8")]
 position = Vector2(77, 198)
-
 
 [node name="DoorKey" parent="." instance=ExtResource("5_qy3vj")]
 position = Vector2(17, 61)
