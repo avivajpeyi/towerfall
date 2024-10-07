@@ -87,7 +87,6 @@ func handle_movement():
 			if !is_stationary():
 				velocity.x -= sign(velocity.x) * _fric_thresh
 		STATE.WALL_SLIDING:
-			$CPUParticles2D.emitting = true
 			if _just_landed_on_wall:
 				velocity.y = -0.25*wall_sliding_speed
 			else:
@@ -198,10 +197,13 @@ func _on_wall_landing_timer_timeout():
 
 func _check_wall_side():
 	if left_raycast.is_colliding():
+		$CPUParticles_left.emitting = true
+		
 		#print("Raycast L on", left_raycast.get_collider())
 		wall_side = WallSide.LEFT
 		face_direction = -1
 	elif right_raycast.is_colliding():
+		$CPUParticles_right.emitting = true
 		#print("Raycast R on", right_raycast.get_collider())
 		wall_side = WallSide.RIGHT
 		face_direction = 1

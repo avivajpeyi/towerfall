@@ -58,8 +58,25 @@ position = Vector2(5, 4)
 scale = Vector2(0.5625, 0.5625)
 texture = SubResource("AtlasTexture_ng0jd")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles_left" type="CPUParticles2D" parent="."]
 position = Vector2(0, 7)
+emitting = false
+amount = 60
+lifetime = 0.4
+one_shot = true
+speed_scale = 2.02
+explosiveness = 0.17
+randomness = 0.33
+lifetime_randomness = 0.46
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector2(0, -70)
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_v3t2q")
+color = Color(0.84104, 0.84104, 0.84104, 1)
+
+[node name="CPUParticles_right" type="CPUParticles2D" parent="."]
+position = Vector2(10, 7)
 emitting = false
 amount = 60
 lifetime = 0.4
