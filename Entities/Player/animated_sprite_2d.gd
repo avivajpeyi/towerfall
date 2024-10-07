@@ -18,6 +18,12 @@ func _ready() -> void:
 	play("wall_jump")
 	frame = 4
 	stop()
+	
+func _on_player_state_changed(new_state, direction):
+	current_state = new_state
+	dir = direction
+	
+	play_animation() 
 
 func play_animation():
 	if current_state == STATE.WALL_SLIDING:
