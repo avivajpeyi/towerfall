@@ -41,10 +41,12 @@ func _connect_to_leaderboard():
 		"log_level": 1
 	})
 
+	
 
-	#SilentWolf.configure_scores({
-	#"open_scene_on_close": "res://scenes/MainPage.tscn"
-	#})
+func _post_score(score):
+	SilentWolf.Scores.save_score(player_name, score)
+	var sw_result: Dictionary = await SilentWolf.Scores.save_score(player_name, score).sw_save_score_complete
+	print("Score persisted successfully: " + str(sw_result.score_id))
 	
 	
 
