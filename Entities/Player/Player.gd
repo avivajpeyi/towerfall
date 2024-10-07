@@ -7,6 +7,7 @@ class_name Player
 @onready var left_raycast := $LeftRayCast2D  # Reference to the left RayCast2D
 @onready var right_raycast := $RightRayCast2D  # Reference to the right RayCast2D
 
+@onready var sprite := $Sprite2D
 
 
 var dead:bool = false
@@ -44,9 +45,11 @@ var _fall_thresh: float = 10.0
 # Player states
 enum STATE { STATIONARY, IN_AIR, WALL_SLIDING, FLOOR_SLIDING }
 var state: STATE = STATE.IN_AIR
+var old_state: STATE = STATE.IN_AIR
 
 # Signal for animation on state change
-signal state_changed(new_state, direction)
+signal state_changed(old_state:STATE, new_state:STATE, direction:int)
+signal just_died()
 
 func _ready():
 	_last_ypos = position.y
@@ -65,12 +68,17 @@ func _process(_delta):
 
 func _physics_process(delta):
 	if !dead:
+		old_state = state
 		_fric_thresh = friction * delta
 		_check_wall_side()
 		_update_state()
 		apply_gravity()
 		handle_movement()
+		_handle_fx()
 		move_and_slide()
+		if state!=old_state:
+			print("State %s->%s"%([_s_to_str(old_state), _s_to_str(state)]))
+			state_changed.emit(old_state, state, face_direction)
 	else:
 		velocity=Vector2.ZERO
 
@@ -130,24 +138,20 @@ func _jump():
 		GameManager.CamShake()
 		AudioManager.play_jump_sfx()
 
-
-func _update_state():
-	if _is_on_wall():
-		if state!=STATE.WALL_SLIDING:
-			_just_landed_on_wall = false
-			#wall_landing_timer.start()
-		state = STATE.WALL_SLIDING
-	elif is_on_floor():
+func _handle_fx():
+	if state == STATE.WALL_SLIDING:
+		if wall_side == WallSide.LEFT:
+			$CPUParticles_left.emitting = true
+		elif wall_side == WallSide.RIGHT:
+			$CPUParticles_right.emitting = true
+	elif state == STATE.FLOOR_SLIDING:
 		$CPUParticles_floor.emitting = true
-		if !is_stationary():
-			state = STATE.FLOOR_SLIDING
-		else:
-			state = STATE.STATIONARY
-	elif !_is_on_wall() and !is_on_floor():
-		state = STATE.IN_AIR
+
+
 
 func Die():
 	if !dead and !global.end_game_mode:
+		just_died.emit()
 		AudioManager.play_die_sfx()
 		GameManager.Lose()
 		dead = true
@@ -155,26 +159,17 @@ func Die():
 		set_physics_process(false)  # Disable physics processing
 		set_process(false)  # Optionally disable input or other processing
 		sprite.modulate = Color(1, 1, 1, 0.5)  # Optionally fade out the player sprite
+		$AnimatedSprite2D.modulate =  Color(1, 1, 1, 0.5)  # Optionally fade out the player sprite
 		# Play death animation, sound, or any other effects
 		print("Player has died")
 
-# Debugging visuals
-func _draw():
-	if debug:
-		var screen_pos = get_viewport().get_canvas_transform().basis_xform_inv(Vector2.ZERO)
-		var side = "L" if face_direction < 0 else "R"
-		var t = _get_state_str() + "(" + side + ")"
-		draw_string(ThemeDB.fallback_font, screen_pos, t, HORIZONTAL_ALIGNMENT_CENTER, -1, 10, Color.WHITE)
-		draw_line(Vector2.ZERO, _leap_vec, Color.RED, 2)
-		draw_line(Vector2.ZERO, Vector2(0, _fall_thresh), Color.RED, 2)
-		draw_line(Vector2.ZERO, _jump_vec, Color.GREEN, 2)
 
-func _get_state_str() -> String:
-	match state:
+
+func _s_to_str(s:STATE)->String:
+	match s:
 		STATE.STATIONARY:
 			return "Stationary"
 		STATE.FLOOR_SLIDING:
-
 			return "Floor-Sliding"
 		STATE.IN_AIR:
 			return "Airborne"
@@ -182,6 +177,10 @@ func _get_state_str() -> String:
 			return "Wall-Sliding"
 		_:
 			return "Unknown"
+	
+
+func _get_state_str() -> String:
+	return _s_to_str(state)
 
 
 
@@ -201,16 +200,27 @@ func _on_wall_landing_timer_timeout():
 	_just_landed_on_wall = false
 
 
+
+
+func _update_state():
+	if _is_on_wall():
+		if state!=STATE.WALL_SLIDING:
+			_just_landed_on_wall = false
+			#wall_landing_timer.start()
+		state = STATE.WALL_SLIDING
+	elif is_on_floor():
+		if !is_stationary():
+			state = STATE.FLOOR_SLIDING
+		else:
+			state = STATE.STATIONARY
+	elif !_is_on_wall() and !is_on_floor():
+		state = STATE.IN_AIR
+
 func _check_wall_side():
 	if left_raycast.is_colliding():
-		$CPUParticles_left.emitting = true
-
-		#print("Raycast L on", left_raycast.get_collider())
 		wall_side = WallSide.LEFT
 		face_direction = -1
 	elif right_raycast.is_colliding():
-		$CPUParticles_right.emitting = true
-		#print("Raycast R on", right_raycast.get_collider())
 		wall_side = WallSide.RIGHT
 		face_direction = 1
 	else:
@@ -225,3 +235,16 @@ func _is_on_wall():
 	elif is_on_wall():
 		return true
 	return false
+
+
+
+# Debugging visuals
+func _draw():
+	if debug:
+		var screen_pos = get_viewport().get_canvas_transform().basis_xform_inv(Vector2.ZERO)
+		var side = "L" if face_direction < 0 else "R"
+		var t = _get_state_str() + "(" + side + ")"
+		draw_string(ThemeDB.fallback_font, screen_pos, t, HORIZONTAL_ALIGNMENT_CENTER, -1, 10, Color.WHITE)
+		draw_line(Vector2.ZERO, _leap_vec, Color.RED, 2)
+		draw_line(Vector2.ZERO, Vector2(0, _fall_thresh), Color.RED, 2)
+		draw_line(Vector2.ZERO, _jump_vec, Color.GREEN, 2)
