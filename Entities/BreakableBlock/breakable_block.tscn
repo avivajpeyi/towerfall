@@ -55,13 +55,14 @@ size = Vector2(16, 16)
 script = ExtResource("1_6b3q7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(7.91569, 7.94317)
-scale = Vector2(1.0303, 1.15493)
+position = Vector2(8.10625, 7.9012)
+scale = Vector2(1.19905, 1.22031)
 texture = SubResource("AtlasTexture_r3n76")
 
 [node name="ShakerComponent2D" type="Node2D" parent="Sprite2D"]
 script = ExtResource("3_f31p8")
-intensity = 0.52
+is_playing = true
+intensity = 0.605
 shake_speed = 0.1
 shakerPreset = SubResource("Resource_nnqt7")
 

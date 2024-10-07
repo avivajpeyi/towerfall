@@ -10,8 +10,6 @@ extends Node2D
 @export var neighbours: Array
 @export var bg_color: Color
 
-	
-
 func _ready() -> void:
 	queue_redraw()
 

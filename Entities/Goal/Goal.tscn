@@ -38,16 +38,16 @@ __follow_timeline = false
 distance = -1.0
 
 [node name="Goal" type="Area2D"]
+collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_0gjrq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(6, 6.7713)
+position = Vector2(6, 6.77273)
 texture = SubResource("AtlasTexture_71rbr")
 
 [node name="ShakerComponent2D" type="Node2D" parent="Sprite2D"]
 script = ExtResource("3_6xg3l")
-is_playing = true
 AutoPlay = true
 shakerPreset = SubResource("Resource_24a8q")
 
