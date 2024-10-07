@@ -63,7 +63,7 @@ func _set_player_name():
 	player_name_label.text = "Help %s escape!"%global.player_name
 
 func _on_level_change(lvl_idx):
-	var lvl_nm = lvl_idx + 1 
+	var lvl_nm = lvl_idx 
 	set_level_data(lvl_nm, levels_instructions[lvl_nm-1])
 
 func set_endgame_text():

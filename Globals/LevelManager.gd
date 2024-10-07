@@ -12,7 +12,7 @@ var _transition_settings:Dictionary = {
 		"color": Color.WHITE
 	}
 
-var NLevels:int = 15
+var NLevels:int = 16
 
 func _ready():
 	for i in range(NLevels):
@@ -40,7 +40,7 @@ func _update_level_data():
 
 
 func in_final_level()->bool:
-	return _level_idx-1 == NLevels
+	return _level_idx+1 == NLevels
 
 	
 func RestartLevel():

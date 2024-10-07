@@ -32,6 +32,6 @@ func _post_score(score:float):
 	
 
 func _get_top_scores():
-	leaderboard_data =  await SilentWolf.Scores.get_scores().sw_get_scores_complete
-	print("Top Scores: " + str(leaderboard_data.scores))
-	N_completions = len(leaderboard_data)
+	leaderboard_data = await SilentWolf.Scores.get_scores(0).sw_get_scores_complete
+	print("All scores: " + str(leaderboard_data.scores))
+	N_completions = len(leaderboard_data.scores)
