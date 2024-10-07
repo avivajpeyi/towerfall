@@ -116,7 +116,7 @@ color = Color(0.84104, 0.84104, 0.84104, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, 4)
-scale = Vector2(0.4375, 0.4375)
+scale = Vector2(0.75, 0.5625)
 sprite_frames = ExtResource("3_6dfkj")
 animation = &"wall_slide"
 script = ExtResource("4_wgn4w")
