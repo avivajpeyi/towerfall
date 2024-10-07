@@ -4,6 +4,8 @@ var leaderboard_data:Dictionary
 var N_completions:int
 var player_ranking:int
 
+signal data_downloaded
+
 func _ready():
 	_connect_to_leaderboard()
 	_get_top_scores()
@@ -23,8 +25,10 @@ func _post_score(score:float):
 	print("psting score ", score)
 	var sw_result: Dictionary = await SilentWolf.Scores.save_score(global.player_name, score).sw_save_score_complete
 	print("Score persisted successfully: " + str(sw_result.score_id))
-	player_ranking = SilentWolf.Scores.get_score_position(score)
+	sw_result = await SilentWolf.Scores.get_score_position(score).sw_get_position_complete
+	player_ranking = sw_result.position
 	print("%s ranks %d"%([global.player_name, player_ranking]))
+	data_downloaded.emit()
 	
 
 func _get_top_scores():

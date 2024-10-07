@@ -32,14 +32,15 @@ func _update_level_data():
 		_level_idx = int(s.split("_")[-1])
 		
 	if !global.end_game_mode and in_final_level():
-		print("Setting to endstate")
+		print("END GAME")
 		global._set_game_to_end_state()
+		LeaderboardManager._post_score(GameManager._time)
 	print("Emit level changed ", _level_idx)
 	GameManager.level_changed.emit(_level_idx)
 
 
 func in_final_level()->bool:
-	return (_level_idx + 1) >= NLevels
+	return _level_idx-1 == NLevels
 
 	
 func RestartLevel():
@@ -52,10 +53,7 @@ func GoToNextLevel():
 		_level_idx+=1 
 		SceneManager.change_scene(_level_files[_level_idx], _transition_settings)
 		await SceneManager.scene_unloaded
-	if in_final_level():
-		print("END GAME")
-		global._set_game_to_end_state()
-
+	
 
 func GetCurrentLevelName()->String:
 	return "level_{0}".format([_level_idx])

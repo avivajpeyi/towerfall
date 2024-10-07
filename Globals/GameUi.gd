@@ -38,6 +38,7 @@ func get_current_lvl_num()->int:
 func _ready():
 	_set_player_name()
 	GameManager.level_changed.connect(_on_level_change)
+	LeaderboardManager.data_downloaded.connect(_update_ranking)
 	
 
 func _process(_delta: float) -> void:
@@ -55,6 +56,9 @@ func _input(event):
 			_set_player_name()
 
 
+func _update_ranking():
+	lvl_num_label.text = "%s is %d out of %d"%([global.player_name, LeaderboardManager.player_ranking, LeaderboardManager.N_completions+1])
+
 func _set_player_name():
 	player_name_label.text = "Help %s escape!"%global.player_name
 
@@ -64,7 +68,7 @@ func _on_level_change(lvl_idx):
 
 func set_endgame_text():
 	lvl_num_label.text = ""
-	player_name_label.text = ""
+	player_name_label.text = "%d creatures made it out!"%(LeaderboardManager.N_completions+1)
 	lvl_instruction_label.text = "Yay! %s made it out"%global.player_name
 	
 
