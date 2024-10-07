@@ -4,23 +4,26 @@ class_name LevelManager
 signal level_changed(level_num:int)
 
 
-
-
-
-
-
-
+var _level_files = []
 var _level_idx = 0
-var _level_names = _load_level_paths()
 var _transition_settings:Dictionary = {
 		"pattern_enter": "squares",
 		"pattern_leave": "squares",
 		"invert_on_leave": true,
+		"color": Color.WHITE
 	}
+	
+	
+	
 	
 
 
-var NLevels:int = len(_level_names)
+var NLevels:int = 15
+
+func _ready():
+	for i in range(NLevels):
+		_level_files.append("res://Levels/levels/Level_{0}.scn".format([i]))
+	
 
 
 func entered_final_level()->bool:
@@ -34,13 +37,6 @@ func RestartLevel():
 
 func GoToNextLevel():
 	_level_idx+=1 
-	SceneManager.change_scene(_level_names[_level_idx], _transition_settings)
+	SceneManager.change_scene(_level_files[_level_idx], _transition_settings)
 	level_changed.emit(_level_idx)
 	
-func _load_level_paths()->PackedStringArray:
-	var level_files = FileUtils.find_files_of_type("res://Levels/levels/", "scn")
-	var sorted_files = []
-	for i in range(len(level_files)):
-		sorted_files.append("res://Levels/levels/level_%d.scn"%i)
-	level_files= PackedStringArray(sorted_files)
-	return sorted_files

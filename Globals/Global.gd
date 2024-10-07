@@ -38,9 +38,9 @@ func _connect_to_leaderboard():
 		"log_level": 1
 	})
 
-	SilentWolf.configure_scores({
-	"open_scene_on_close": "res://scenes/MainPage.tscn"
-	})
+	#SilentWolf.configure_scores({
+	#"open_scene_on_close": "res://scenes/MainPage.tscn"
+	#})
 	
 	
 
@@ -51,4 +51,4 @@ func _generate_player_name() -> String:
 	var prefix = prefixes[randi() % prefixes.size()]
 	var suffix = suffixes[randi() % suffixes.size()]
 	var number = randi() % 100  # Random number from 0 to 99
-	return "%s%s [%d]" % [prefix, suffix, number]
+	return "%s%s" % [prefix, suffix]

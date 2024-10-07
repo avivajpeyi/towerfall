@@ -6,6 +6,7 @@ class_name GameUi
 @onready var time_label := $LevelInfo/Time
 @onready var lvl_num_label := $LevelInfo/LevelNumber
 
+
 var levels_instructions = {
 	0: "Click to jump",
 	1: "Dont fall! Wallslide your way down",
@@ -62,3 +63,7 @@ func _update_time() -> void:
 		0:"%02d"%minutes,
 		1:"%02d"%seconds,
 		})
+
+
+func _on_button_pressed():
+	GameManager.Lose()

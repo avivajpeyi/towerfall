@@ -13,7 +13,6 @@ config_version=5
 config/name="TowerFall"
 run/main_scene="res://Levels/levels/Level_0.scn"
 config/features=PackedStringArray("4.3")
-config/icon="res://Image/picon.svg"
 
 [autoload]
 
@@ -94,7 +93,7 @@ ui_fullscreen={
 
 2d_physics/layer_1="Solid"
 2d_physics/layer_2="Player"
-2d_physics/layer_3="Goober"
+2d_physics/layer_3="Key"
 
 [rendering]
 

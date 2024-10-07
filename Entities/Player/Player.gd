@@ -15,6 +15,8 @@ var face_direction:int = -1
 var _just_landed_on_wall = false
 
 # Movement variables
+
+var debug = true
 var _in_spring_jump:bool = false
 var grav_scale: float = 2.0
 var terminal_velocity: float = 500.0
@@ -89,10 +91,10 @@ func handle_movement():
 		STATE.STATIONARY:
 			var fall_distance = abs(position.y - _last_ypos)
 			if fall_distance > _fall_thresh:
-				#print("Large fall! ")
+				print("Large fall! ")
 				Die()
 			if wall_side==WallSide.NONE:
-				#print("Cant interact with aything... RIP")
+				print("Cant interact with aything... RIP")
 				Die()
 			
 
@@ -126,13 +128,14 @@ func Die():
 
 # Debugging visuals
 func _draw():
-	var screen_pos = get_viewport().get_canvas_transform().basis_xform_inv(Vector2.ZERO)
-	var side = "L" if face_direction < 0 else "R"
-	var t = _get_state_str() + "(" + side + ")"
-	draw_string(ThemeDB.fallback_font, screen_pos, t, HORIZONTAL_ALIGNMENT_CENTER, -1, 10, Color.WHITE)
-	draw_line(Vector2.ZERO, _leap_vec, Color.RED, 2)
-	draw_line(Vector2.ZERO, Vector2(0, _fall_thresh), Color.RED, 2)
-	draw_line(Vector2.ZERO, _jump_vec, Color.GREEN, 2)
+	if debug:
+		var screen_pos = get_viewport().get_canvas_transform().basis_xform_inv(Vector2.ZERO)
+		var side = "L" if face_direction < 0 else "R"
+		var t = _get_state_str() + "(" + side + ")"
+		draw_string(ThemeDB.fallback_font, screen_pos, t, HORIZONTAL_ALIGNMENT_CENTER, -1, 10, Color.WHITE)
+		draw_line(Vector2.ZERO, _leap_vec, Color.RED, 2)
+		draw_line(Vector2.ZERO, Vector2(0, _fall_thresh), Color.RED, 2)
+		draw_line(Vector2.ZERO, _jump_vec, Color.GREEN, 2)
 
 func _get_state_str() -> String:
 	match state:
@@ -183,6 +186,8 @@ func _check_wall_side():
 func _is_on_wall():
 	if _in_spring_jump:
 		return false
-	if is_on_wall() or wall_side != WallSide.NONE:
+	elif  wall_side != WallSide.NONE:
+		return true
+	elif is_on_wall():
 		return true
 	return false
