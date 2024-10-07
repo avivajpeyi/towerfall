@@ -26,7 +26,6 @@ Shaker="*res://addons/shaker/src/Shaker.gd"
 GameManager="*res://Globals/GameManager.tscn"
 AudioManager="*res://Entities/AudioManager/AudioManager.tscn"
 LevelManager="*res://Globals/LevelManager.gd"
-ParticleFX="*res://Entities/particleFX/ParticleFX.gd"
 
 [display]
 
