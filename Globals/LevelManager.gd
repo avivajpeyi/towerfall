@@ -1,5 +1,4 @@
 extends Node2D
-class_name LevelManager
 
 signal level_changed(level_num:int)
 

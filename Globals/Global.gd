@@ -12,6 +12,8 @@ func _ready():
 	await get_tree().create_timer(0.1).timeout
 	_add_gamemusic_loop()
 	
+	
+	
 
 
 func _add_gamemusic_loop():
@@ -32,12 +34,13 @@ func _input(event):
 
 
 func _connect_to_leaderboard():
+	print("Connecting to leaderboard")
 	SilentWolf.configure({
 		"api_key": "xRcZ5BFPDK5AyEzuDjVmXaF8u4u1iA7UPNNX8KP6",
 		"game_id": "towerfall",
-		"game_version": "1.0.2",
 		"log_level": 1
 	})
+
 
 	#SilentWolf.configure_scores({
 	#"open_scene_on_close": "res://scenes/MainPage.tscn"
