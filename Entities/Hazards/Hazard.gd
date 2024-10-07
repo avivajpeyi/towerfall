@@ -9,4 +9,4 @@ func _on_area_entered(area):
 	var parent =  area.get_parent()
 	if parent is Player:
 		print("Player killed by hazard")
-		GameManager.Lose()
+		LevelManager.RestartLevel()

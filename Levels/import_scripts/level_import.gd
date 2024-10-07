@@ -9,5 +9,7 @@ func post_import(level: LDTKLevel) -> LDTKLevel:
 			child.collision_visibility_mode =TileMapLayer.DEBUG_VISIBILITY_MODE_FORCE_HIDE
 			if child.name == 'IntGrid-values':
 				child.enabled = false
+		
 		print("Success in imporing level!")
+	level.add_to_group("level", true)
 	return level

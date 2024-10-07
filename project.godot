@@ -19,14 +19,12 @@ config/features=PackedStringArray("4.3")
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 global="*res://Globals/Global.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
-PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+LevelManager="*res://Globals/LevelManager.gd"
 Shaker="*res://addons/shaker/src/Shaker.gd"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 GameManager="*res://Globals/GameManager.tscn"
-
-SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 AudioManager="*res://Entities/AudioManager/AudioManager.tscn"
-
 
 [display]
 
@@ -34,7 +32,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/ldtk-importer/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg", "res://addons/silent_wolf/plugin.cfg", "res://addons/utils/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/ldtk-importer/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/shaker/plugin.cfg", "res://addons/silent_wolf/plugin.cfg")
 
 [importer_defaults]
 

@@ -5,6 +5,7 @@ class_name GameUi
 @onready var lvl_instruction_label  := $LevelInstruction
 @onready var time_label := $LevelInfo/Time
 @onready var lvl_num_label := $LevelInfo/LevelNumber
+@onready var debug_label := $LevelInfo/DebugTxt
 
 
 var levels_instructions = {
@@ -23,14 +24,7 @@ var levels_instructions = {
 	12: "",
 	13: "",
 	14: "",
-	15: "",
-	16: "",
-	17: "",
-	18: "",
-	19: "",
-	20: "",
-	21: "",
-	22: ""
+	15: "You made it!",
 }
 
 
@@ -38,8 +32,8 @@ var levels_instructions = {
 func _ready():
 	_set_player_name(global.player_name)
 	await get_tree().create_timer(0.1).timeout
-	GameManager._lvlManager.level_changed.connect(_on_level_change)
-	_on_level_change(1)
+	LevelManager.level_changed.connect(_on_level_change)
+	_on_level_change(0)
 
 func _process(_delta: float) -> void:
 	_update_time()
@@ -50,10 +44,10 @@ func _set_player_name(_name:String):
 func _on_level_change(level_num):
 	set_level_data(level_num, levels_instructions[level_num])
 
-
 func set_level_data( current_level_num:int, instructions:String):
 	lvl_instruction_label.text = instructions
-	lvl_num_label.text = "%d/%d"%[current_level_num, GameManager.Nlevels]
+	lvl_num_label.text = "%d/%d"%[current_level_num, LevelManager.NLevels]
+	#debug_label.text = LevelManager.
 
 func _update_time() -> void:
 	var minutes = int(GameManager._time) / 60
@@ -66,4 +60,4 @@ func _update_time() -> void:
 
 
 func _on_button_pressed():
-	GameManager.Lose()
+	LevelManager.Lose()

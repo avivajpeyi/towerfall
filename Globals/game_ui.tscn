@@ -48,8 +48,6 @@ horizontal_alignment = 2
 [node name="DebugTxt" type="Label" parent="LevelInfo"]
 layout_mode = 2
 theme = ExtResource("2_avnfr")
-text = "Level Num / total levels
-"
 horizontal_alignment = 2
 
 [node name="RestartButton" type="Button" parent="."]

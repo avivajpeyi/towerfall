@@ -4,6 +4,7 @@ extends Node2D
 var OST = load("res://Audio/fall.mp3")
 var audio
 var player_name:String
+var debugMode:bool = false
 
 
 func _ready():
@@ -32,18 +33,22 @@ func _input(event):
 
 
 func _connect_to_leaderboard():
+	print("Connecting to leaderboard")
 	SilentWolf.configure({
 		"api_key": "xRcZ5BFPDK5AyEzuDjVmXaF8u4u1iA7UPNNX8KP6",
 		"game_id": "towerfall",
-		"game_version": "1.0.2",
 		"log_level": 1
 	})
 
-	#SilentWolf.configure_scores({
-	#"open_scene_on_close": "res://scenes/MainPage.tscn"
-	#})
+	
+func _post_score(score):
+	SilentWolf.Scores.save_score(player_name, score)
+	var sw_result: Dictionary = await SilentWolf.Scores.save_score(player_name, score).sw_save_score_complete
+	print("Score persisted successfully: " + str(sw_result.score_id))
 	
 	
+
+
 
 func _generate_player_name() -> String:
 	var prefixes = ["Fli", "Twi", "Pip", "Bub", "Nim", "Doo", "Zee", "Mimi", "Lolo", "Tee"]
@@ -51,5 +56,5 @@ func _generate_player_name() -> String:
 
 	var prefix = prefixes[randi() % prefixes.size()]
 	var suffix = suffixes[randi() % suffixes.size()]
-	var number = randi() % 100  # Random number from 0 to 99
+	#var number = randi() % 100  # Random number from 0 to 99
 	return "%s%s" % [prefix, suffix]

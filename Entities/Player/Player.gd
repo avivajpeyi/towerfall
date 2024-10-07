@@ -16,7 +16,6 @@ var _just_landed_on_wall = false
 
 # Movement variables
 
-var debug = true
 var _in_spring_jump:bool = false
 var grav_scale: float = 2.0
 var terminal_velocity: float = 500.0
@@ -103,12 +102,18 @@ func handle_movement():
 
 # Jump functionality
 func _jump():
-	AudioManager.jump_sfx.play()
+	var jumped = false
 	match state:
 		STATE.WALL_SLIDING, STATE.FLOOR_SLIDING:
 			velocity = _leap_vec
+			jumped = true
 		STATE.STATIONARY:
 			velocity = _jump_vec
+			jumped = true
+	
+	if jumped:
+		GameManager.CamShake()
+		AudioManager.jump_sfx.play()
 
 func _update_state():
 	if _is_on_wall():
@@ -126,11 +131,11 @@ func _update_state():
 
 func Die():
 	AudioManager.die_sfx.play()
-	GameManager.Lose()
+	LevelManager.RestartLevel()
 
 # Debugging visuals
 func _draw():
-	if debug:
+	if global.debugMode:
 		var screen_pos = get_viewport().get_canvas_transform().basis_xform_inv(Vector2.ZERO)
 		var side = "L" if face_direction < 0 else "R"
 		var t = _get_state_str() + "(" + side + ")"
@@ -155,7 +160,6 @@ func _get_state_str() -> String:
 
 
 func _spring_jump(force, start_point):
-	print("spring jump (raycasts disabled)!")
 	left_raycast.enabled = false
 	right_raycast.enabled = false
 	_in_spring_jump= true
@@ -164,7 +168,6 @@ func _spring_jump(force, start_point):
 	position = start_point
 	await get_tree().create_timer(0.75).timeout
 	_in_spring_jump=false
-	print("Raycasts enabled agai")
 	left_raycast.enabled = true
 	right_raycast.enabled = true
 
