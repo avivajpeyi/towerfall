@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 class_name Player
 
-@onready var sprite := $Sprite2D
-@onready var animated_sprite := $AnimatedSprite2D
 @onready var physics_collider := $CollisionShape2D
 @onready var interaction_area := $Area2D
 @onready var left_raycast := $LeftRayCast2D  # Reference to the left RayCast2D
@@ -38,6 +36,9 @@ var _fall_thresh: float = 10.0
 enum STATE { STATIONARY, IN_AIR, WALL_SLIDING, FLOOR_SLIDING }
 var state: STATE = STATE.IN_AIR
 
+# Signal for animation on state change
+signal state_changed(new_state, direction)
+
 func _ready():
 	_last_ypos = position.y
 	GameManager.set_camera_target(self)
@@ -69,7 +70,6 @@ func handle_movement():
 			if !is_stationary():
 				velocity.x -= sign(velocity.x) * _fric_thresh
 		STATE.WALL_SLIDING:
-			animated_sprite.play("wall_slide")
 			velocity.y = lerp(velocity.y, wall_sliding_speed, 0.1)
 			_last_ypos = position.y  # Update y-position for fall calculation
 		STATE.STATIONARY:
@@ -90,10 +90,8 @@ func _jump():
 	match state:
 		STATE.WALL_SLIDING:
 			velocity = _leap_vec
-			animated_sprite.play("wall_jump")
 		STATE.FLOOR_SLIDING:
 			velocity = _leap_vec
-			animated_sprite.play("floor_slide")
 		STATE.STATIONARY:
 			velocity = _jump_vec
 
@@ -109,7 +107,6 @@ func _update_state():
 		state = STATE.IN_AIR
 
 func Die():
-	animated_sprite.play("death")
 	await get_tree().create_timer(1.0).timeout
 	GameManager.Lose()
 
@@ -128,6 +125,7 @@ func _get_state_str() -> String:
 		STATE.STATIONARY:
 			return "Stationary"
 		STATE.FLOOR_SLIDING:
+			
 			return "Floor-Sliding"
 		STATE.IN_AIR:
 			return "Airborne"
