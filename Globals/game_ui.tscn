@@ -32,6 +32,12 @@ offset_left = -181.0
 offset_bottom = 50.0
 grow_horizontal = 0
 
+[node name="Time" type="Label" parent="LevelInfo"]
+layout_mode = 2
+theme = ExtResource("2_avnfr")
+text = "00:00:00"
+horizontal_alignment = 2
+
 [node name="LevelNumber" type="Label" parent="LevelInfo"]
 layout_mode = 2
 theme = ExtResource("2_avnfr")
@@ -39,17 +45,9 @@ text = "Level Num / total levels
 "
 horizontal_alignment = 2
 
-[node name="Time" type="Label" parent="LevelInfo"]
-layout_mode = 2
-theme = ExtResource("2_avnfr")
-text = "00:00:00"
-horizontal_alignment = 2
-
 [node name="DebugTxt" type="Label" parent="LevelInfo"]
 layout_mode = 2
 theme = ExtResource("2_avnfr")
-text = "Level Num / total levels
-"
 horizontal_alignment = 2
 
 [node name="RestartButton" type="Button" parent="."]

@@ -9,6 +9,7 @@ class_name Player
 @onready var right_raycast := $RightRayCast2D  # Reference to the right RayCast2D
 
 
+
 var dead:bool = false
 
 enum WallSide { NONE=0, LEFT=-1, RIGHT=1 }
@@ -18,7 +19,7 @@ var _just_landed_on_wall = false
 
 # Movement variables
 
-var debug = true
+var debug = false
 var _in_spring_jump:bool = false
 var grav_scale: float = 2.0
 var terminal_velocity: float = 500.0
@@ -48,8 +49,6 @@ var state: STATE = STATE.IN_AIR
 func _ready():
 	_last_ypos = position.y
 	GameManager.set_camera_target(self)
-
-
 	wall_landing_timer = Timer.new()
 	wall_landing_timer.wait_time = 0.05  # Set the time duration (adjust as needed)
 	wall_landing_timer.one_shot = true
@@ -63,12 +62,15 @@ func _process(_delta):
 	queue_redraw()
 
 func _physics_process(delta):
-	_fric_thresh = friction * delta
-	_check_wall_side()
-	_update_state()
-	apply_gravity()
-	handle_movement()
-	move_and_slide()
+	if !dead:
+		_fric_thresh = friction * delta
+		_check_wall_side()
+		_update_state()
+		apply_gravity()
+		handle_movement()
+		move_and_slide()
+	else:
+		velocity=Vector2.ZERO
 
 func _slide_up():
 	pass
@@ -93,15 +95,19 @@ func handle_movement():
 		STATE.STATIONARY:
 			var fall_distance = abs(position.y - _last_ypos)
 			if fall_distance > _fall_thresh:
-				print("Large fall! ")
 				Die()
 			elif wall_side==WallSide.NONE:
-				print("Cant interact with aything... RIP")
 				Die()
 
 
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and !dead:
 		_jump()
+		
+
+func _input(event):
+	if event.is_action_pressed("debug_mode"):
+		debug = !debug
+	
 
 # Jump functionality
 func _jump():
@@ -112,6 +118,8 @@ func _jump():
 			jumped = true
 		STATE.STATIONARY:
 			velocity = _jump_vec
+			if !global.end_game_mode:
+				velocity=_leap_vec
 			jumped = true
 
 	if jumped:
@@ -134,10 +142,16 @@ func _update_state():
 		state = STATE.IN_AIR
 
 func Die():
-	if !dead:
+	if !dead and !global.end_game_mode:
 		AudioManager.play_die_sfx()
 		GameManager.Lose()
 		dead = true
+		velocity = Vector2.ZERO  # Stop movement by setting velocity to zero
+		set_physics_process(false)  # Disable physics processing
+		set_process(false)  # Optionally disable input or other processing
+		sprite.modulate = Color(1, 1, 1, 0.5)  # Optionally fade out the player sprite
+		# Play death animation, sound, or any other effects
+		print("Player has died")
 
 # Debugging visuals
 func _draw():

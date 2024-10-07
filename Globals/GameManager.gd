@@ -19,13 +19,18 @@ func _ready():
 	
 	
 func _process(delta: float) -> void:
-	_time += delta
+	if !global.end_game_mode:
+		_time += delta
 	
 	if is_shaking: 
 		shake_amt = Vector2(randf_range(-1,1), randf_range(-1,1)) * shake_mag
 		_cam.global_position += shake_amt
 
 
+
+func _input(event):
+	if global.debug_mode and event.is_action_pressed("skip_level"):
+		GoToNextLevel()
 
 
 func _on_node_removed(removed_node: Node):
@@ -34,6 +39,7 @@ func _on_node_removed(removed_node: Node):
 
 func set_camera_target(target:Node2D):
 	_cam.follow_target = target
+		
 
 func Lose():
 	print("Lose!")
@@ -41,9 +47,7 @@ func Lose():
 	
 func GoToNextLevel():
 	_lvlManager.GoToNextLevel()
-	if _lvlManager.entered_final_level():
-		print("Posting score")
-		SilentWolf.Scores.persist_score(global.player_name, _time)	
+
 
 	
 
