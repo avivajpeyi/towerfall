@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cdqj305fiv5vj"]
 
 [ext_resource type="Script" path="res://Entities/Goal/Goal.gd" id="1_0gjrq"]
-[ext_resource type="Texture2D" uid="uid://wijhk6a404ql" path="res://Image/monochrome_tilemap_transparent.png" id="1_fg5fv"]
+[ext_resource type="Texture2D" uid="uid://wijhk6a404ql" path="res://Image/old/monochrome_tilemap_transparent.png" id="1_fg5fv"]
 [ext_resource type="Script" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="3_6xg3l"]
 [ext_resource type="Script" path="res://addons/shaker/data/Vector2/BaseShakerType2D.gd" id="4_ccqte"]
 [ext_resource type="Script" path="res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd" id="5_h68mx"]

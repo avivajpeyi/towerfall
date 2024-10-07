@@ -9,6 +9,8 @@ class_name Player
 @onready var right_raycast := $RightRayCast2D  # Reference to the right RayCast2D
 
 
+var dead:bool = false
+
 enum WallSide { NONE=0, LEFT=-1, RIGHT=1 }
 var wall_side: WallSide = WallSide.NONE
 var face_direction:int = -1
@@ -93,7 +95,7 @@ func handle_movement():
 			if fall_distance > _fall_thresh:
 				print("Large fall! ")
 				Die()
-			if wall_side==WallSide.NONE:
+			elif wall_side==WallSide.NONE:
 				print("Cant interact with aything... RIP")
 				Die()
 
@@ -114,7 +116,7 @@ func _jump():
 
 	if jumped:
 		GameManager.CamShake()
-		AudioManager.jump_sfx.play()
+		AudioManager.play_jump_sfx()
 	
 
 func _update_state():
@@ -132,8 +134,10 @@ func _update_state():
 		state = STATE.IN_AIR
 
 func Die():
-	AudioManager.die_sfx.play()
-	GameManager.Lose()
+	if !dead:
+		AudioManager.play_die_sfx()
+		GameManager.Lose()
+		dead = true
 
 # Debugging visuals
 func _draw():

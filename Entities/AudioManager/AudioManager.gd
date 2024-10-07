@@ -6,3 +6,28 @@ extends Node
 @onready var shoot_sfx = $shooterSFX
 @onready var spring_sfx = $springSFX
 @onready var spike_sfx = $spikeSFX
+
+
+# Plays the sound effect only if it is not currently playing
+func play_sfx(sfx: AudioStreamPlayer):
+	if not sfx.is_playing():
+		sfx.play()
+
+# Example usage:
+func play_jump_sfx():
+	play_sfx(jump_sfx)
+
+func play_slide_sfx():
+	play_sfx(slide_sfx)
+
+func play_die_sfx():
+	play_sfx(die_sfx)
+
+func play_shoot_sfx():
+	play_sfx(shoot_sfx)
+
+func play_spring_sfx():
+	play_sfx(spring_sfx)
+
+func play_spike_sfx():
+	play_sfx(spike_sfx)

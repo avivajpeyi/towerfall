@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccxmd1v0nd7wi"
-path="res://.godot/imported/Title.png-cfcdc4a2fa59b19153e6bcb0e896364a.ctex"
+uid="uid://cn5awui7bqekp"
+path="res://.godot/imported/Goober.png-e77171d156e546e4299935930881dae0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Image/Title.png"
-dest_files=["res://.godot/imported/Title.png-cfcdc4a2fa59b19153e6bcb0e896364a.ctex"]
+source_file="res://Image/old/Goober.png"
+dest_files=["res://.godot/imported/Goober.png-e77171d156e546e4299935930881dae0.ctex"]
 
 [params]
 
