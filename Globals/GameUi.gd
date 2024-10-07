@@ -38,7 +38,7 @@ func get_current_lvl_num()->int:
 func _ready():
 	_set_player_name()
 	GameManager.level_changed.connect(_on_level_change)
-	LeaderboardManager.data_downloaded.connect(_update_ranking)
+	LeaderboardManager.player_data_posted.connect(_update_ranking)
 	
 
 func _process(_delta: float) -> void:
@@ -91,12 +91,7 @@ func set_level_data( current_level_num:int, instructions:String):
 
 
 func _gametime_to_str()->String:
-	var minutes = int(GameManager._time) / 60
-	var seconds = int(GameManager._time) % 60
-	return "{0}:{1}".format({
-		0:"%02d"%minutes,
-		1:"%02d"%seconds,
-		})
+	return global.float_to_time_str(GameManager._time)
 
 
 func _on_button_pressed():

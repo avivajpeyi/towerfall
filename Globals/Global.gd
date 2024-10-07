@@ -52,6 +52,15 @@ func _add_gamemusic_loop():
 
 func _set_game_to_end_state():
 	end_game_mode = true
+	
+
+func float_to_time_str(t:float)->String:
+	var minutes = int(t) / 60
+	var seconds = int(t) % 60
+	return "{0}:{1}".format({
+		0:"%02d"%minutes,
+		1:"%02d"%seconds,
+		})
 
 
 func _generate_player_name() -> String:

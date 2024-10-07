@@ -1,5 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqv70cuvl5eel"]
+[gd_scene load_steps=3 format=3 uid="uid://bqv70cuvl5eel"]
 
 [ext_resource type="PackedScene" uid="uid://2wy4d8d5av0l" path="res://addons/silent_wolf/Scores/ScoreItem.tscn" id="1_ksor3"]
+[ext_resource type="Theme" uid="uid://d2eakbmaefnt6" path="res://addons/silent_wolf/assets/themes/sw_theme.tres" id="2_744no"]
 
 [node name="ScoreItem" instance=ExtResource("1_ksor3")]
+custom_minimum_size = Vector2(450, 50)
+theme = ExtResource("2_744no")
+
+[node name="Score" parent="." index="1"]
+offset_left = 301.0
+offset_right = 427.0
