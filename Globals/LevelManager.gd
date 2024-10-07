@@ -1,6 +1,6 @@
 extends Node2D
 
-signal level_changed(level_idx:int)
+
 
 
 var _level_files = []
@@ -12,13 +12,18 @@ var _transition_settings:Dictionary = {
 		"color": Color.WHITE
 	}
 
-var NLevels:int = 16
+var NLevels:int = 15
 
 func _ready():
 	for i in range(NLevels):
 		_level_files.append("res://Levels/levels/Level_{0}.scn".format([i]))
 	
 	SceneManager.scene_loaded.connect(_update_level_data)
+	await SceneManager.scene_loaded
+	
+	
+	_update_level_data()
+	
 
 
 func _update_level_data():
@@ -26,8 +31,11 @@ func _update_level_data():
 	if "_" in s:
 		_level_idx = int(s.split("_")[-1])
 		
-	if in_final_level():
+	if !global.end_game_mode and in_final_level():
+		print("Setting to endstate")
 		global._set_game_to_end_state()
+	print("Emit level changed ", _level_idx)
+	GameManager.level_changed.emit(_level_idx)
 
 
 func in_final_level()->bool:
@@ -44,7 +52,6 @@ func GoToNextLevel():
 		_level_idx+=1 
 		SceneManager.change_scene(_level_files[_level_idx], _transition_settings)
 		await SceneManager.scene_unloaded
-		level_changed.emit(_level_idx)
 	if in_final_level():
 		print("END GAME")
 		global._set_game_to_end_state()

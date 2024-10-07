@@ -27,7 +27,7 @@ var levels_instructions = {
 	12: "",
 	13: "",
 	14: "",
-	15: "Yay! %s made it out",
+	15: "",
 }
 
 
@@ -37,8 +37,8 @@ func get_current_lvl_num()->int:
 
 func _ready():
 	_set_player_name()
-	await SceneManager.scene_loaded
-	SceneManager.scene_loaded.connect(_on_level_change)
+	GameManager.level_changed.connect(_on_level_change)
+	
 
 func _process(_delta: float) -> void:
 	if !global.end_game_mode:
@@ -58,20 +58,30 @@ func _input(event):
 func _set_player_name():
 	player_name_label.text = "Help %s escape!"%global.player_name
 
-func _on_level_change():
-	var lvl_nm = get_current_lvl_num() 
+func _on_level_change(lvl_idx):
+	var lvl_nm = lvl_idx + 1 
 	set_level_data(lvl_nm, levels_instructions[lvl_nm-1])
+
+func set_endgame_text():
+	lvl_num_label.text = ""
+	player_name_label.text = ""
+	lvl_instruction_label.text = "Yay! %s made it out"%global.player_name
+	
 
 
 func set_level_data( current_level_num:int, instructions:String):
+	print("Setting UI for lvl %d"%current_level_num)
 	if instructions.find("%") != -1:
 		instructions= instructions % global.player_name  # Apply formatting with player's name
 	else:
 		instructions= instructions  # Return the string as is
 	lvl_instruction_label.text = instructions
 	lvl_num_label.text = "%d/%d"%[current_level_num, GameManager.Nlevels-1]
+	
+	
 	if global.end_game_mode or current_level_num>= GameManager.Nlevels:
-		lvl_num_label.text = ""
+		set_endgame_text()
+		
 	if debug:
 		debug_label.text = "DEBUG: %s"%global.current_level_name
 

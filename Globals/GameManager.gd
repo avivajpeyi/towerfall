@@ -13,6 +13,9 @@ var is_shaking: bool = false
 var shake_time: float = 0.05
 var shake_amt: Vector2 = Vector2.ZERO
 
+
+signal level_changed(level_idx:int)
+
 func _ready():
 	get_tree().connect("node_removed", _on_node_removed)
 	Nlevels = _lvlManager.NLevels
