@@ -8,6 +8,7 @@ var _num_keys_collected: int = 0  # Keep track of the collected keys
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var static_body: StaticBody2D = $StaticBody2D
+@onready var shaker: ShakerComponent2D = $AnimatedSprite2D/ShakerComponent2D
 var _is_locked: bool = true
 
 
@@ -38,3 +39,4 @@ func _lock_door(lock:bool):
 		animated_sprite.play("unlocked")
 		static_body.set_collision_layer_value(1, false)  # Disable collision on layer 1
 		static_body.set_collision_mask_value(1, false)   # Disable collision mask on layer 1
+		shaker.play_shake()

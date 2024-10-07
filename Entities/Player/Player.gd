@@ -15,6 +15,8 @@ var face_direction:int = -1
 var _just_landed_on_wall = false
 
 # Movement variables
+
+var debug = true
 var _in_spring_jump:bool = false
 var grav_scale: float = 2.0
 var terminal_velocity: float = 500.0
@@ -44,8 +46,8 @@ var state: STATE = STATE.IN_AIR
 func _ready():
 	_last_ypos = position.y
 	GameManager.set_camera_target(self)
-	
-	
+
+
 	wall_landing_timer = Timer.new()
 	wall_landing_timer.wait_time = 0.05  # Set the time duration (adjust as needed)
 	wall_landing_timer.one_shot = true
@@ -89,13 +91,12 @@ func handle_movement():
 		STATE.STATIONARY:
 			var fall_distance = abs(position.y - _last_ypos)
 			if fall_distance > _fall_thresh:
-				
-				#print("Large fall! ")
+				print("Large fall! ")
 				Die()
 			if wall_side==WallSide.NONE:
-				#print("Cant interact with aything... RIP")
+				print("Cant interact with aything... RIP")
 				Die()
-			
+
 
 	if Input.is_action_just_pressed("jump"):
 		_jump()
@@ -112,7 +113,7 @@ func _jump():
 func _update_state():
 	if _is_on_wall():
 		if state!=STATE.WALL_SLIDING:
-			_just_landed_on_wall = false 
+			_just_landed_on_wall = false
 			#wall_landing_timer.start()
 		state = STATE.WALL_SLIDING
 	elif is_on_floor():
@@ -129,13 +130,14 @@ func Die():
 
 # Debugging visuals
 func _draw():
-	var screen_pos = get_viewport().get_canvas_transform().basis_xform_inv(Vector2.ZERO)
-	var side = "L" if face_direction < 0 else "R"
-	var t = _get_state_str() + "(" + side + ")"
-	draw_string(ThemeDB.fallback_font, screen_pos, t, HORIZONTAL_ALIGNMENT_CENTER, -1, 10, Color.WHITE)
-	draw_line(Vector2.ZERO, _leap_vec, Color.RED, 2)
-	draw_line(Vector2.ZERO, Vector2(0, _fall_thresh), Color.RED, 2)
-	draw_line(Vector2.ZERO, _jump_vec, Color.GREEN, 2)
+	if debug:
+		var screen_pos = get_viewport().get_canvas_transform().basis_xform_inv(Vector2.ZERO)
+		var side = "L" if face_direction < 0 else "R"
+		var t = _get_state_str() + "(" + side + ")"
+		draw_string(ThemeDB.fallback_font, screen_pos, t, HORIZONTAL_ALIGNMENT_CENTER, -1, 10, Color.WHITE)
+		draw_line(Vector2.ZERO, _leap_vec, Color.RED, 2)
+		draw_line(Vector2.ZERO, Vector2(0, _fall_thresh), Color.RED, 2)
+		draw_line(Vector2.ZERO, _jump_vec, Color.GREEN, 2)
 
 func _get_state_str() -> String:
 	match state:
@@ -155,17 +157,17 @@ func _get_state_str() -> String:
 func _spring_jump(force, start_point):
 	print("spring jump (raycasts disabled)!")
 	left_raycast.enabled = false
-	right_raycast.enabled = false	
+	right_raycast.enabled = false
 	_in_spring_jump= true
-	velocity.y = -force 
+	velocity.y = -force
 	velocity.x = 0
-	position = start_point 
+	position = start_point
 	await get_tree().create_timer(0.75).timeout
 	_in_spring_jump=false
 	print("Raycasts enabled agai")
 	left_raycast.enabled = true
 	right_raycast.enabled = true
-	
+
 func _on_wall_landing_timer_timeout():
 	_just_landed_on_wall = false
 
@@ -186,5 +188,8 @@ func _check_wall_side():
 func _is_on_wall():
 	if _in_spring_jump:
 		return false
-	if is_on_wall() or wall_side != WallSide.NONE:
+	elif  wall_side != WallSide.NONE:
 		return true
+	elif is_on_wall():
+		return true
+	return false
