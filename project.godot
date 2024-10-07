@@ -13,6 +13,7 @@ config_version=5
 config/name="TowerFall"
 run/main_scene="res://Levels/levels/Level_0.scn"
 config/features=PackedStringArray("4.3")
+config/icon="res://Image/picon.svg"
 
 [autoload]
 
@@ -22,9 +23,10 @@ DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 Shaker="*res://addons/shaker/src/Shaker.gd"
-LevelManager="*res://Globals/LevelManager.gd"
 GameManager="*res://Globals/GameManager.tscn"
 AudioManager="*res://Entities/AudioManager/AudioManager.tscn"
+LevelManager="*res://Globals/LevelManager.gd"
+ParticleFX="*res://Entities/particleFX/ParticleFX.gd"
 
 [display]
 

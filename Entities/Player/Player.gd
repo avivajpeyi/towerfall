@@ -7,6 +7,7 @@ class_name Player
 @onready var interaction_area := $Area2D
 @onready var left_raycast := $LeftRayCast2D  # Reference to the left RayCast2D
 @onready var right_raycast := $RightRayCast2D  # Reference to the right RayCast2D
+@onready var slidepfx = $slidepfx
 
 
 var dead:bool = false
@@ -69,7 +70,8 @@ func _physics_process(delta):
 	apply_gravity()
 	handle_movement()
 	move_and_slide()
-
+	
+	
 func _slide_up():
 	pass
 
@@ -159,6 +161,7 @@ func _get_state_str() -> String:
 		STATE.IN_AIR:
 			return "Airborne"
 		STATE.WALL_SLIDING:
+			slidepfx.emitting = true
 			return "Wall-Sliding"
 		_:
 			return "Unknown"
