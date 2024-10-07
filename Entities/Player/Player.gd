@@ -134,6 +134,7 @@ func _update_state():
 			#wall_landing_timer.start()
 		state = STATE.WALL_SLIDING
 	elif is_on_floor():
+		$CPUParticles_floor.emitting = true
 		if !is_stationary():
 			state = STATE.FLOOR_SLIDING
 		else:

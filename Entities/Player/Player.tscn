@@ -92,5 +92,24 @@ scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_v3t2q")
 color = Color(0.84104, 0.84104, 0.84104, 1)
 
+[node name="CPUParticles_floor" type="CPUParticles2D" parent="."]
+position = Vector2(5, 8)
+emitting = false
+amount = 60
+lifetime = 0.4
+one_shot = true
+speed_scale = 2.02
+explosiveness = 0.17
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 10.0
+damping_max = 63.194
+scale_amount_curve = SubResource("Curve_v3t2q")
+color = Color(0.84104, 0.84104, 0.84104, 1)
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
