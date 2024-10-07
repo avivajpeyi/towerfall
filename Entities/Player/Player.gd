@@ -46,8 +46,8 @@ var state: STATE = STATE.IN_AIR
 func _ready():
 	_last_ypos = position.y
 	GameManager.set_camera_target(self)
-	
-	
+
+
 	wall_landing_timer = Timer.new()
 	wall_landing_timer.wait_time = 0.05  # Set the time duration (adjust as needed)
 	wall_landing_timer.one_shot = true
@@ -96,13 +96,14 @@ func handle_movement():
 			if wall_side==WallSide.NONE:
 				print("Cant interact with aything... RIP")
 				Die()
-			
+
 
 	if Input.is_action_just_pressed("jump"):
 		_jump()
 
 # Jump functionality
 func _jump():
+	AudioManager.jump_sfx.play()
 	match state:
 		STATE.WALL_SLIDING, STATE.FLOOR_SLIDING:
 			velocity = _leap_vec
@@ -112,7 +113,7 @@ func _jump():
 func _update_state():
 	if _is_on_wall():
 		if state!=STATE.WALL_SLIDING:
-			_just_landed_on_wall = false 
+			_just_landed_on_wall = false
 			#wall_landing_timer.start()
 		state = STATE.WALL_SLIDING
 	elif is_on_floor():
@@ -124,6 +125,7 @@ func _update_state():
 		state = STATE.IN_AIR
 
 func Die():
+	AudioManager.die_sfx.play()
 	GameManager.Lose()
 
 # Debugging visuals
@@ -155,17 +157,17 @@ func _get_state_str() -> String:
 func _spring_jump(force, start_point):
 	print("spring jump (raycasts disabled)!")
 	left_raycast.enabled = false
-	right_raycast.enabled = false	
+	right_raycast.enabled = false
 	_in_spring_jump= true
-	velocity.y = -force 
+	velocity.y = -force
 	velocity.x = 0
-	position = start_point 
+	position = start_point
 	await get_tree().create_timer(0.75).timeout
 	_in_spring_jump=false
 	print("Raycasts enabled agai")
 	left_raycast.enabled = true
 	right_raycast.enabled = true
-	
+
 func _on_wall_landing_timer_timeout():
 	_just_landed_on_wall = false
 
