@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 class_name Player
 
-@onready var sprite := $Sprite2D
 @onready var physics_collider := $CollisionShape2D
 @onready var interaction_area := $Area2D
 @onready var left_raycast := $LeftRayCast2D  # Reference to the left RayCast2D
@@ -45,6 +44,9 @@ var _fall_thresh: float = 10.0
 # Player states
 enum STATE { STATIONARY, IN_AIR, WALL_SLIDING, FLOOR_SLIDING }
 var state: STATE = STATE.IN_AIR
+
+# Signal for animation on state change
+signal state_changed(new_state, direction)
 
 func _ready():
 	_last_ypos = position.y
@@ -102,18 +104,20 @@ func handle_movement():
 
 	if Input.is_action_just_pressed("jump") and !dead:
 		_jump()
-		
+
 
 func _input(event):
 	if event.is_action_pressed("debug_mode"):
 		debug = !debug
-	
+
 
 # Jump functionality
 func _jump():
 	var jumped = false
 	match state:
-		STATE.WALL_SLIDING, STATE.FLOOR_SLIDING:
+		STATE.WALL_SLIDING:
+			velocity = _leap_vec
+		STATE.FLOOR_SLIDING:
 			velocity = _leap_vec
 			jumped = true
 		STATE.STATIONARY:
@@ -125,7 +129,7 @@ func _jump():
 	if jumped:
 		GameManager.CamShake()
 		AudioManager.play_jump_sfx()
-	
+
 
 func _update_state():
 	if _is_on_wall():
@@ -170,6 +174,7 @@ func _get_state_str() -> String:
 		STATE.STATIONARY:
 			return "Stationary"
 		STATE.FLOOR_SLIDING:
+
 			return "Floor-Sliding"
 		STATE.IN_AIR:
 			return "Airborne"
@@ -199,7 +204,7 @@ func _on_wall_landing_timer_timeout():
 func _check_wall_side():
 	if left_raycast.is_colliding():
 		$CPUParticles_left.emitting = true
-		
+
 		#print("Raycast L on", left_raycast.get_collider())
 		wall_side = WallSide.LEFT
 		face_direction = -1
