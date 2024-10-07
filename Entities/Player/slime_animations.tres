@@ -1,6 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=38 format=3 uid="uid://bbfr2w6aqdfre"]
 
 [ext_resource type="Texture2D" uid="uid://dismqfga1hqje" path="res://Entities/Player/slime.png" id="1_gm2gh"]
+[ext_resource type="Texture2D" uid="uid://dern1ichghe4k" path="res://Entities/Player/slime_fixed.png" id="2_oo6n2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4y0xh"]
 atlas = ExtResource("1_gm2gh")
@@ -90,10 +91,6 @@ region = Rect2(32, 48, 16, 16)
 atlas = ExtResource("1_gm2gh")
 region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6e8w2"]
-atlas = ExtResource("1_gm2gh")
-region = Rect2(16, 16, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8apoe"]
 atlas = ExtResource("1_gm2gh")
 region = Rect2(32, 16, 16, 16)
@@ -134,16 +131,16 @@ region = Rect2(80, 80, 16, 16)
 atlas = ExtResource("1_gm2gh")
 region = Rect2(96, 80, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5i0xr"]
-atlas = ExtResource("1_gm2gh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdjei"]
+atlas = ExtResource("2_oo6n2")
 region = Rect2(0, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sdk51"]
-atlas = ExtResource("1_gm2gh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8phku"]
+atlas = ExtResource("2_oo6n2")
 region = Rect2(16, 32, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g3h56"]
-atlas = ExtResource("1_gm2gh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_70a1x"]
+atlas = ExtResource("2_oo6n2")
 region = Rect2(32, 32, 16, 16)
 
 [resource]
@@ -236,9 +233,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_ujqd2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6e8w2")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_8apoe")
 }, {
 "duration": 1.0,
@@ -249,7 +243,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"wall_jump",
-"speed": 15.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -279,13 +273,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5i0xr")
+"texture": SubResource("AtlasTexture_qdjei")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sdk51")
+"texture": SubResource("AtlasTexture_8phku")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g3h56")
+"texture": SubResource("AtlasTexture_70a1x")
 }],
 "loop": false,
 "name": &"wall_slide",
