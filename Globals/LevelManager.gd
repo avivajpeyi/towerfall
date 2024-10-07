@@ -17,19 +17,18 @@ var NLevels:int = 16
 func _ready():
 	for i in range(NLevels):
 		_level_files.append("res://Levels/levels/Level_{0}.scn".format([i]))
-	await get_tree().create_timer(0.2).timeout
-	print(global.current_level_name)
-	update_current_level_idx()
-	level_changed.emit(_level_idx)
-	print("In ", GetCurrentLevelName())
+	
+	SceneManager.scene_loaded.connect(_update_level_data)
 
 
-func update_current_level_idx():
+func _update_level_data():
 	var s:String = global.current_level_name
 	if "_" in s:
 		_level_idx = int(s.split("_")[-1])
-	else:
-		_level_idx = -1
+		
+	if in_final_level():
+		global._set_game_to_end_state()
+
 
 func in_final_level()->bool:
 	return (_level_idx + 1) >= NLevels
@@ -39,12 +38,15 @@ func RestartLevel():
 	SceneManager.reload_scene(_transition_settings)
 
 func GoToNextLevel():
-	print("Moving from %d to %d"%[_level_idx, _level_idx+1])
-	_level_idx+=1 
-	SceneManager.change_scene(_level_files[_level_idx], _transition_settings)
-	await get_tree().create_timer(0.2).timeout
-	level_changed.emit(_level_idx)
+	if !in_final_level():
+		global.current_level_name = "Level_%d"%(_level_idx+1)
+		print("Moving from %d to %d (new lvl: %s)"%[_level_idx, _level_idx+1, global.current_level_name])
+		_level_idx+=1 
+		SceneManager.change_scene(_level_files[_level_idx], _transition_settings)
+		await SceneManager.scene_unloaded
+		level_changed.emit(_level_idx)
 	if in_final_level():
+		print("END GAME")
 		global._set_game_to_end_state()
 
 

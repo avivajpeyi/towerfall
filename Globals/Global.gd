@@ -5,15 +5,23 @@ var OST = load("res://Audio/fall.mp3")
 var audio
 var player_name:String
 var end_game_mode=false
-var current_level_name:String = "NULL"
+var current_level_name:String
 var debug_mode:bool = false
 
 
 func _ready():
 	_connect_to_leaderboard()
+	SceneManager.scene_loaded.connect(_on_scene_loaded)
 	player_name = _generate_player_name()
-	await get_tree().create_timer(0.1).timeout
+	await SceneManager.scene_loaded
 	_add_gamemusic_loop()
+	
+	
+func _on_scene_loaded():
+	var child = get_tree().get_first_node_in_group('level')
+	if child != null:
+		current_level_name = child.name
+
 	
 func _input(event):
 	if event.is_action_pressed("debug_mode"):

@@ -17,10 +17,10 @@ config/features=PackedStringArray("4.3")
 [autoload]
 
 SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 global="*res://Globals/Global.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
-SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 Shaker="*res://addons/shaker/src/Shaker.gd"
 LevelManager="*res://Globals/LevelManager.gd"
 GameManager="*res://Globals/GameManager.tscn"

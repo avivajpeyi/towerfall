@@ -118,7 +118,7 @@ func _jump():
 			jumped = true
 		STATE.STATIONARY:
 			velocity = _jump_vec
-			if !global.end_game_mode:
+			if global.end_game_mode:
 				velocity=_leap_vec
 			jumped = true
 

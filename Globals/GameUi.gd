@@ -31,15 +31,18 @@ var levels_instructions = {
 }
 
 
+func get_current_lvl_num()->int:
+	return GameManager._lvlManager._level_idx + 1
+
 
 func _ready():
 	_set_player_name()
-	await get_tree().create_timer(0.1).timeout
-	GameManager._lvlManager.level_changed.connect(_on_level_change)
-	_on_level_change(0)
+	await SceneManager.scene_loaded
+	SceneManager.scene_loaded.connect(_on_level_change)
 
 func _process(_delta: float) -> void:
-	_update_time()
+	if !global.end_game_mode:
+		time_label.text = _gametime_to_str()
 	
 func _input(event):
 	if event.is_action_pressed("debug_mode"):
@@ -55,8 +58,9 @@ func _input(event):
 func _set_player_name():
 	player_name_label.text = "Help %s escape!"%global.player_name
 
-func _on_level_change(level_idx):
-	set_level_data(level_idx+1, levels_instructions[level_idx])
+func _on_level_change():
+	var lvl_nm = get_current_lvl_num() 
+	set_level_data(lvl_nm, levels_instructions[lvl_nm-1])
 
 
 func set_level_data( current_level_num:int, instructions:String):
@@ -66,11 +70,11 @@ func set_level_data( current_level_num:int, instructions:String):
 		instructions= instructions  # Return the string as is
 	lvl_instruction_label.text = instructions
 	lvl_num_label.text = "%d/%d"%[current_level_num, GameManager.Nlevels-1]
-	if global.end_game_mode:
+	if global.end_game_mode or current_level_num>= GameManager.Nlevels:
 		lvl_num_label.text = ""
+	if debug:
+		debug_label.text = "DEBUG: %s"%global.current_level_name
 
-func _update_time() -> void:
-	time_label.text = _gametime_to_str()
 
 func _gametime_to_str()->String:
 	var minutes = int(GameManager._time) / 60

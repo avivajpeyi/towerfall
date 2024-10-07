@@ -13,7 +13,6 @@ extends Node2D
 	
 
 func _ready() -> void:
-	global.current_level_name = self.name
 	queue_redraw()
 
 func _draw() -> void:
