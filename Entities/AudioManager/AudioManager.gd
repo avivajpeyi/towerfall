@@ -6,6 +6,9 @@ extends Node
 @onready var shoot_sfx = $shooterSFX
 @onready var spring_sfx = $springSFX
 @onready var spike_sfx = $spikeSFX
+@onready var key_sfx = $KeyPickedUpSFX
+@onready var unlock_sfx = $UnlockedSFX
+@onready var level_complete_sfx = $LevelCompleteSFX
 
 
 # Plays the sound effect only if it is not currently playing
@@ -30,4 +33,13 @@ func play_spring_sfx():
 	play_sfx(spring_sfx)
 
 func play_spike_sfx():
-	play_sfx(spike_sfx)
+	play_sfx(spike_sfx) 
+
+func play_lvl_complete_sfx():
+	play_sfx(level_complete_sfx)
+
+func play_key_sfx():
+	play_sfx(key_sfx)
+	
+func play_unlock_sfx():
+	play_sfx(unlock_sfx)

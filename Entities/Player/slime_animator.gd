@@ -24,7 +24,6 @@ func _ready() -> void:
 	player = get_parent() as Player
 	player.just_died.connect(_play_death_anim)
 	player.state_changed.connect(_on_player_state_changed)
-	animation_finished.connect(_on_animation_finished)
 		
 	# Initial frame is for airborne state
 	play("wall_jump")

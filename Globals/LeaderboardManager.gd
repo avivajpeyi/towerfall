@@ -9,7 +9,7 @@ signal data_downloaded
 func _ready():
 	_connect_to_leaderboard()
 	_get_top_scores()
-	
+
 
 func _connect_to_leaderboard():
 	print("Connecting to leaderboard")
@@ -19,6 +19,9 @@ func _connect_to_leaderboard():
 		"log_level": 1
 	})
 	
+
+func _clear_leaderboard():
+	SilentWolf.Scores.wipe_leaderboard()
 
 	
 func _post_score(score:float):

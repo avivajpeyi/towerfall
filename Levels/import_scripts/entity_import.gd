@@ -11,6 +11,7 @@ const BreakableBlock = preload("res://Entities/BreakableBlock/breakable_block.ts
 const SpikeShooter = preload("res://Entities/fall_spike/SpikeShooter.tscn")
 const Spring = preload("res://Entities/Spring/Spring.tscn")
 const BallShooter = preload("res://Entities/ball_shooter/Shooter.tscn")
+const Title = preload("res://Entities/title/Title.tscn")
 
 const LDTKUtil = preload("res://addons/ldtk-importer/src/util/util.gd")
 
@@ -44,6 +45,8 @@ func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 			_add_scn_at_entity(Spring, entity, entity_layer)
 		elif entity.identifier == "BallShoter":
 			_add_scn_at_entity(BallShooter, entity, entity_layer)
+		elif entity.identifier == "Text":
+			_add_scn_at_entity(Title, entity, entity_layer)
 		
 		
 		else:

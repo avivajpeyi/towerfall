@@ -11,4 +11,5 @@ func _on_area_entered(area: Area2D) -> void:
 	if parent is Player:
 		print(self, "Key is collected.")
 		key_collected.emit()
+		AudioManager.play_key_sfx()
 		queue_free()  # Remove the key after it's collected

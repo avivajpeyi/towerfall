@@ -125,6 +125,7 @@ func _jump():
 	match state:
 		STATE.WALL_SLIDING:
 			velocity = _leap_vec
+			jumped = true
 		STATE.FLOOR_SLIDING:
 			velocity = _leap_vec
 			jumped = true

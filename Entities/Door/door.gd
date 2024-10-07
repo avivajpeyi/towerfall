@@ -36,3 +36,4 @@ func _lock_door(lock:bool):
 		static_body.set_collision_layer_value(1, false)  # Disable collision on layer 1
 		static_body.set_collision_mask_value(1, false)   # Disable collision mask on layer 1
 		shaker.play_shake()
+		AudioManager.play_unlock_sfx()

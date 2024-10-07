@@ -11,7 +11,7 @@ var debug:bool = false
 
 
 var levels_instructions = {
-	-1: "Unregistered",
+	-1: "Click to make %s jump",
 	0: "Click to make %s jump",
 	1: "Help %s wallslide its way down",
 	2: "Dont let %s slow down too much",
@@ -21,8 +21,8 @@ var levels_instructions = {
 	6: "wheee springs!",
 	7: "",
 	8: "Keys unlock doors!",
-	9: "Tip: %s can wall-jump pretty fast!",
-	10: "",
+	9: "",
+	10: "Tip: %s can wall-jump pretty fast!",
 	11: "",
 	12: "",
 	13: "",
