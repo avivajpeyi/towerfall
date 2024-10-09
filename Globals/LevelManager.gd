@@ -9,7 +9,7 @@ var _transition_settings:Dictionary = {
 		"pattern_enter": "squares",
 		"pattern_leave": "squares",
 		"invert_on_leave": true,
-		"color": Color.WHITE
+		"color": Color(255,255,255,0.1)
 	}
 
 var NLevels:int = 16
