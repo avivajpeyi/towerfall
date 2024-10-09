@@ -7,6 +7,8 @@ var player_ranking:int
 signal leaderboard_data_updated
 signal player_data_posted
 
+var posting_allowed:bool = false
+
 func _ready():
 	_connect_to_leaderboard()
 	_get_top_scores()
@@ -26,6 +28,9 @@ func _clear_leaderboard():
 
 	
 func _post_score(score:float):
+	if !posting_allowed:
+		print("SCORE POSTING DISABLED")
+		return 
 	print("psting score ", score)
 	var score_to_save = score*-1
 	var sw_result: Dictionary = await SilentWolf.Scores.save_score(global.player_name, score_to_save).sw_save_score_complete

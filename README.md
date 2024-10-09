@@ -1,5 +1,6 @@
 # TowerFall
 
+- [itch.io page](https://avivajpeyi.itch.io/towerfall)
 - Godot4.3 game played with one button
 - Use walljumping abilities to help your critter make it out of the tower
 
@@ -14,4 +15,3 @@
 ### Assets
 
 - [Kenny 1-Bit platformer pack](https://kenney.nl/assets/1-bit-platformer-pack)
-- 
